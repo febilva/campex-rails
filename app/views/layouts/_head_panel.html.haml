@@ -1,0 +1,12 @@
+%header.ui.inverted.menu.head_mod
+  %a.item{id: "menu_btn"}
+    %i.list.icon
+  %a.item
+    %strong.logo
+      = image_tag "campex.jpg"
+  .right.menu
+    .item
+      =# link_to "Change your password" #, edit_user_path
+    %a.item{:href => auth_logout_path, "data-method" => "delete"}
+      %i.sign.out.icon
+      Sign out

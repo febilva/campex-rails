@@ -1,0 +1,17 @@
+!!! 5
+%html
+  %head
+    %title Campex
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    = render "layouts/head_panel"
+    .ui.content.stackable.centered.grid
+      .two.column.row
+        #side_menu.one.wide.left.floated.column
+          = render "layouts/side_menu"
+        .fourteen.wide.column
+          .ui.real-content.segment
+            = yield
+    = render "layouts/footer"
