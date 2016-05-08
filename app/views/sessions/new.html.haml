@@ -1,0 +1,22 @@
+!!! 5
+%html#login-page
+  %head
+    %title Campex
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .ui.middle.aligned.center.aligned.grid
+      .column.form-holder
+        %h2.ui.form-head.header
+          .content Sign in using
+        .ui.basic.segments
+          #facebook.ui.basic.inverted.blue.segment
+            %i.facebook.icon
+            %p FACEBOOK
+          .ui.basic.inverted.red.segment
+            %i.google.icon
+            %p GOOGLE
+          .ui.basic.inverted.violet.segment
+            %i.yahoo.icon
+            %p YAHOO!
