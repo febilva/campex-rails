@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @student.id
       session[:user_type] = "student"
 
-      redirect_to root_url
+      redirect_to dashboard_index_url
     else
       redirect_to root_url
     end
