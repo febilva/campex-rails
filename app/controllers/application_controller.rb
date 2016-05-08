@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticated?
-    if params[:controller] == 'sessions'
+    if params[:controller] == 'sessions' and ['new', 'create'].include? params[:action]
       redirect_to dashboard_index_url if logged_in?
     else
       redirect_to root_url unless logged_in?
