@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508144111) do
+ActiveRecord::Schema.define(version: 20160508232454) do
+
+  create_table "registration_forms", force: :cascade do |t|
+    t.integer  "student_id",        limit: 4
+    t.integer  "current_step",      limit: 4
+    t.boolean  "instructions_read"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "registration_forms", ["student_id"], name: "index_registration_forms_on_student_id", using: :btree
 
   create_table "registration_steps", force: :cascade do |t|
     t.integer  "position",   limit: 4
@@ -30,4 +40,5 @@ ActiveRecord::Schema.define(version: 20160508144111) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "registration_forms", "students"
 end

@@ -1,0 +1,19 @@
+= form_for @registration_form do |f|
+  - if @registration_form.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@registration_form.errors.count, "error")} prohibited this registration_form from being saved:"
+      %ul
+        - @registration_form.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :student
+    = f.text_field :student
+  .field
+    = f.label :current_step
+    = f.number_field :current_step
+  .field
+    = f.label :instructions_read
+    = f.check_box :instructions_read
+  .actions
+    = f.submit 'Save'

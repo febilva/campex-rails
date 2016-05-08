@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_id: 
+  current_step: 1
+  instructions_read: false
+
+two:
+  student_id: 
+  current_step: 1
+  instructions_read: false

@@ -1,0 +1,25 @@
+%h1 Listing registration_forms
+
+%table
+  %thead
+    %tr
+      %th Student
+      %th Current step
+      %th Instructions read
+      %th
+      %th
+      %th
+
+  %tbody
+    - @registration_forms.each do |registration_form|
+      %tr
+        %td= registration_form.student
+        %td= registration_form.current_step
+        %td= registration_form.instructions_read
+        %td= link_to 'Show', registration_form
+        %td= link_to 'Edit', edit_registration_form_path(registration_form)
+        %td= link_to 'Destroy', registration_form, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Registration form', new_registration_form_path

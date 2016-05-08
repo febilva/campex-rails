@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Student:
+  = @registration_form.student
+%p
+  %b Current step:
+  = @registration_form.current_step
+%p
+  %b Instructions read:
+  = @registration_form.instructions_read
+
+= link_to 'Edit', edit_registration_form_path(@registration_form)
+\|
+= link_to 'Back', registration_forms_path
