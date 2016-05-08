@@ -1,0 +1,7 @@
+# config/payment.yml:
+development:
+  client_id: 472784899584036
+  client_secret: f6860a671415615af73ba03643663435
+production:
+  client_id: ENV['FACEBOOK_KEY']
+  client_secret:  ENV['FACEBOOK_SECRET']
