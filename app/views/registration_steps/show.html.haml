@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Position:
+  = @registration_step.position
+%p
+  %b Name:
+  = @registration_step.name
+%p
+  %b Icon:
+  = @registration_step.icon
+%p
+  %b Url:
+  = @registration_step.url
+
+= link_to 'Edit', edit_registration_step_path(@registration_step)
+\|
+= link_to 'Back', registration_steps_path

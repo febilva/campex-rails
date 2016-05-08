@@ -1,0 +1,27 @@
+%h1 Listing registration_steps
+
+%table
+  %thead
+    %tr
+      %th Position
+      %th Name
+      %th Icon
+      %th Url
+      %th
+      %th
+      %th
+
+  %tbody
+    - @registration_steps.each do |registration_step|
+      %tr
+        %td= registration_step.position
+        %td= registration_step.name
+        %td= registration_step.icon
+        %td= registration_step.url
+        %td= link_to 'Show', registration_step
+        %td= link_to 'Edit', edit_registration_step_path(registration_step)
+        %td= link_to 'Destroy', registration_step, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Registration step', new_registration_step_path

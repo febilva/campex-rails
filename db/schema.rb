@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508062032) do
+ActiveRecord::Schema.define(version: 20160508144111) do
+
+  create_table "registration_steps", force: :cascade do |t|
+    t.integer  "position",   limit: 4
+    t.string   "name",       limit: 255
+    t.string   "icon",       limit: 255
+    t.string   "url",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "students", force: :cascade do |t|
     t.string   "email",      limit: 255
