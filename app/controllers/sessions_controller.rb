@@ -18,10 +18,14 @@ class SessionsController < ApplicationController
         }
       end
 
-      @student = Student.create(user_info.compact)
+      @student = Student.new(user_info.compact)
+      @registration_form = @student.build_registration_form
+      @registration_form.current_step = 0
+      @registration_form.instructions_read = false
+
     end
 
-    if(@student)
+    if(@student.save)
       session[:user_id] = @student.id
       session[:user_type] = "student"
 
