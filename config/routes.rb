@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :reservation_categories
+  resources :reservation_categories do
+    resources :castes
+  end
   resources :registration_forms
   resources :registration_steps
   resources :students

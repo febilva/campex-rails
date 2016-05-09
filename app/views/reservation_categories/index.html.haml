@@ -7,6 +7,7 @@
       %th
       %th
       %th
+      %th
 
   %tbody
     - @reservation_categories.each do |reservation_category|
@@ -14,6 +15,7 @@
         %td= reservation_category.name
         %td= link_to 'Show', reservation_category
         %td= link_to 'Edit', edit_reservation_category_path(reservation_category)
+        %td= link_to 'Castes', reservation_category_castes_path(reservation_category)
         %td= link_to 'Destroy', reservation_category, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br

@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509065606) do
+ActiveRecord::Schema.define(version: 20160509070638) do
+
+  create_table "castes", force: :cascade do |t|
+    t.integer  "reservation_category_id", limit: 4
+    t.string   "name",                    limit: 255
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "castes", ["reservation_category_id"], name: "fk_rails_cb6b8cb67a", using: :btree
 
   create_table "configurators", force: :cascade do |t|
     t.integer  "max_enabled_step", limit: 4
@@ -54,5 +63,6 @@ ActiveRecord::Schema.define(version: 20160509065606) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "castes", "reservation_categories"
   add_foreign_key "registration_forms", "students"
 end

@@ -52,4 +52,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Nested scaffold generator for Rails
+  gem 'nested_scaffold'
 end

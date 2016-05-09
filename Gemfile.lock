@@ -102,6 +102,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.4.4)
+    nested_scaffold (1.0.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     oauth2 (1.1.0)
@@ -195,6 +196,7 @@ DEPENDENCIES
   jquery-rails
   momentjs-rails
   mysql2 (>= 0.3.13, < 0.5)
+  nested_scaffold
   omniauth-facebook
   rails (= 4.2.5)
   sass-rails (~> 5.0)

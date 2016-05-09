@@ -1,0 +1,19 @@
+%h1 Listing castes
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @castes.each do |caste|
+    %tr
+      %td= caste.name
+      %td= link_to 'Show', [caste.reservation_category, caste]
+      %td= link_to 'Edit', edit_reservation_category_caste_path(caste.reservation_category, caste)
+      %td= link_to 'Destroy', [caste.reservation_category, caste], :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Caste', new_reservation_category_caste_path(params[:reservation_category_id])

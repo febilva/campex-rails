@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @caste.name
+
+= link_to 'Edit', edit_reservation_category_caste_path(@caste.reservation_category, @caste)
+\|
+= link_to 'Back', reservation_category_castes_path(@caste.reservation_category)
