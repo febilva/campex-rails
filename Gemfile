@@ -38,6 +38,8 @@ gem "haml-rails", "~> 0.9"
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 # Facebook OAuth2 Strategy for OmniAuth
 gem 'omniauth-facebook'
+# Momentjs for date picker dependency
+gem 'momentjs-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
