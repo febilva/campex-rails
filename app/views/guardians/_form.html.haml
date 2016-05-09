@@ -1,0 +1,64 @@
+= form_for @guardian do |f|
+  - if @guardian.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@guardian.errors.count, "error")} prohibited this guardian from being saved:"
+      %ul
+        - @guardian.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :student
+    = f.text_field :student
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :gender
+    = f.text_field :gender
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :mobile_no
+    = f.text_field :mobile_no
+  .field
+    = f.label :phone_no
+    = f.text_field :phone_no
+  .field
+    = f.label :relationship
+    = f.text_field :relationship
+  .field
+    = f.label :qualification
+    = f.text_field :qualification
+  .field
+    = f.label :occupation
+    = f.text_field :occupation
+  .field
+    = f.label :annual_income
+    = f.text_field :annual_income
+  .field
+    = f.label :address_line1
+    = f.text_field :address_line1
+  .field
+    = f.label :address_line2
+    = f.text_field :address_line2
+  .field
+    = f.label :country
+    = f.text_field :country
+  .field
+    = f.label :state
+    = f.text_field :state
+  .field
+    = f.label :district
+    = f.text_field :district
+  .field
+    = f.label :taluk
+    = f.text_field :taluk
+  .field
+    = f.label :post_office
+    = f.text_field :post_office
+  .field
+    = f.label :pincode
+    = f.text_field :pincode
+  .actions
+    = f.submit 'Save'

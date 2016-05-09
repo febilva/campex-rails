@@ -1,0 +1,60 @@
+%p#notice= notice
+
+%p
+  %b Student:
+  = @guardian.student
+%p
+  %b Name:
+  = @guardian.name
+%p
+  %b Gender:
+  = @guardian.gender
+%p
+  %b Email:
+  = @guardian.email
+%p
+  %b Mobile no:
+  = @guardian.mobile_no
+%p
+  %b Phone no:
+  = @guardian.phone_no
+%p
+  %b Relationship:
+  = @guardian.relationship
+%p
+  %b Qualification:
+  = @guardian.qualification
+%p
+  %b Occupation:
+  = @guardian.occupation
+%p
+  %b Annual income:
+  = @guardian.annual_income
+%p
+  %b Address line1:
+  = @guardian.address_line1
+%p
+  %b Address line2:
+  = @guardian.address_line2
+%p
+  %b Country:
+  = @guardian.country
+%p
+  %b State:
+  = @guardian.state
+%p
+  %b District:
+  = @guardian.district
+%p
+  %b Taluk:
+  = @guardian.taluk
+%p
+  %b Post office:
+  = @guardian.post_office
+%p
+  %b Pincode:
+  = @guardian.pincode
+
+= link_to 'Edit', edit_guardian_path(@guardian)
+\|
+= link_to 'Back', guardians_path

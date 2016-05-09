@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
       end
 
       @student = Student.new(user_info.compact)
+      @student.build_guardian
       @registration_form = @student.build_registration_form
       @registration_form.current_step = 0
       @registration_form.instructions_read = false

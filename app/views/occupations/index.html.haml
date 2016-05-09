@@ -1,0 +1,21 @@
+%h1 Listing occupations
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @occupations.each do |occupation|
+      %tr
+        %td= occupation.name
+        %td= link_to 'Show', occupation
+        %td= link_to 'Edit', edit_occupation_path(occupation)
+        %td= link_to 'Destroy', occupation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Occupation', new_occupation_path

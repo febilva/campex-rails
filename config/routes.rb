@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :guardians
+  resources :occupations
+  resources :qualifications
   resources :countries, shallow: true do
     resources :states do
       resources :districts
@@ -18,7 +21,11 @@ Rails.application.routes.draw do
   namespace :dashboard do
     get 'index'
     match 'instructions', via: [:get, :post]
-    match 'personal', via: [:get, :post]
+    get 'personal'
+    get 'address'
+    get 'guardian'
+    get 'weightages'
+    get 'phase_completed'
     get 'update_menu'
   end
   # The priority is based upon order of creation: first created -> highest priority.

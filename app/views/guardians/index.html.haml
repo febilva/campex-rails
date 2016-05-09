@@ -1,0 +1,55 @@
+%h1 Listing guardians
+
+%table
+  %thead
+    %tr
+      %th Student
+      %th Name
+      %th Gender
+      %th Email
+      %th Mobile no
+      %th Phone no
+      %th Relationship
+      %th Qualification
+      %th Occupation
+      %th Annual income
+      %th Address line1
+      %th Address line2
+      %th Country
+      %th State
+      %th District
+      %th Taluk
+      %th Post office
+      %th Pincode
+      %th
+      %th
+      %th
+
+  %tbody
+    - @guardians.each do |guardian|
+      %tr
+        %td= guardian.student
+        %td= guardian.name
+        %td= guardian.gender
+        %td= guardian.email
+        %td= guardian.mobile_no
+        %td= guardian.phone_no
+        %td= guardian.relationship
+        %td= guardian.qualification
+        %td= guardian.occupation
+        %td= guardian.annual_income
+        %td= guardian.address_line1
+        %td= guardian.address_line2
+        %td= guardian.country
+        %td= guardian.state
+        %td= guardian.district
+        %td= guardian.taluk
+        %td= guardian.post_office
+        %td= guardian.pincode
+        %td= link_to 'Show', guardian
+        %td= link_to 'Edit', edit_guardian_path(guardian)
+        %td= link_to 'Destroy', guardian, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Guardian', new_guardian_path

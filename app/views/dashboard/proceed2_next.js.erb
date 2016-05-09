@@ -1,21 +1,22 @@
-<%  if @instance and @instance.errors.any? %>
-  $('#error_messages').html("<%= escape_javascript render 'errors', instance: @instance %>");
+<%  if @student and @student.errors.any? %>
+  $(".real-content").removeClass( "loading" );
+  $('#error_messages').html("<%= escape_javascript render 'errors', instance: @student %>");
+  $(".real-content").removeClass( "loading" );
+  $(document).trigger('page:load');
 <% else %>
-  <% @to_step = current_user.registration_form.current_step %>
-
-  <% if @to_step >= Configurator.first.max_enabled_step %>
+  <% if @origin_step.position == Configurator.first.max_enabled_step %>
     <% controller_name = "dashboard" %>
     <% action_name = "phase_completed" %>
   <% else %>
-    <% controller_name = RegistrationStep.find_by(position: @to_step).controller %>
-    <% action_name = RegistrationStep.find_by(position: @to_step).action %>
+    <% controller_name = RegistrationStep.find_by(position: @origin_step.position + 1).controller %>
+    <% action_name = RegistrationStep.find_by(position: @origin_step.position + 1).action %>
   <% end %>
   <% template = "#{controller_name}/#{action_name}" %>
+
+  $('.real-content').html("");
+  $(".real-content").removeClass( "loading" );
+  $(document).trigger('page:load');
+  $('.real-content').html("<%= escape_javascript render(template: template) %>");
+
+  window.history.replaceState({}, '', '<%= url_for(controller: controller_name, action: action_name, only_path: false) %>');
 <% end %>
-
-$('.real-content').html("");
-$('.real-content').html("<%= escape_javascript render(template: template) %>");
-$(".real-content").removeClass( "loading" );
-
-window.history.replaceState({}, nil,
-'<%= url_for(controller: controller_name, action: action_name, only_path: false) %>');

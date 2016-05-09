@@ -1,5 +1,7 @@
 var current_step = <%= current_user.registration_form.current_step %>;
-for(var i=0; i<= current_step; ++i)
+var max_enabled_step = <%= Configurator.first.max_enabled_step %>;
+
+for(var i=0; i<= Math.min(current_step, max_enabled_step); ++i)
 {
   $("#side_menu").find(".menu.item[data-position='" + i + "']").removeClass("disabled");
 }

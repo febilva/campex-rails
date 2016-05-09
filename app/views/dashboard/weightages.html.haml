@@ -1,0 +1,191 @@
+%h1 Weightages / Additional Information
+
+= form_for current_user, html:{class:"ui fluid form"}, remote:true do |f|
+  #error_messages
+  = hidden_field_tag 'step_name', 'Weightages'
+  .field
+    .ui.stackableg
+      .ui.black.secondary.segment
+        %h4{class:"ui header"} Physically Handicapped (Minimum 40% Differently Abled)
+        .ui.stackable.three.column.grid
+          .column
+            %lable Blind
+            .ui.tertiary.segment
+              .ui.stackable.two.column.grid
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :blind, "Yes"
+                    %label Yes
+                .column
+                  .ui.radio.checkbox.checked
+                    = f.radio_button :blind, "No", checked: @current_user.blind.nil? || @current_user.blind == 'No'
+                    %label No
+            %lable.indication
+              %i.warning.circle.icon
+              SELECT THE APPROPRIATE
+          .column
+            %lable Deaf
+            .ui.tertiary.segment
+              .ui.stackable.two.column.grid
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :deaf, "Yes"
+                    %label Yes
+                .column
+                  .ui.radio.checkbox.checked
+                    = f.radio_button :deaf, "No", checked: @current_user.deaf.nil? || @current_user.deaf == 'No'
+                    %label No
+            %lable.indication
+              %i.warning.circle.icon
+              SELECT THE APPROPRIATE
+          .column
+            %lable Orthopedically Handicapped
+            .ui.tertiary.segment
+              .ui.stackable.two.column.grid
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :orthopedic, "Yes"
+                    %label Yes
+                .column
+                  .ui.radio.checkbox.checked
+                    = f.radio_button :orthopedic, "No", checked: @current_user.orthopedic.nil? || @current_user.orthopedic == 'No'
+                    %label No
+            %lable.indication
+              %i.warning.circle.icon
+              SELECT THE APPROPRIATE
+      .ui.secondary.black.segment
+        %h4{class:"ui header"} Services (Certificates should be presented)
+        .ui.stackable.three.column.grid
+          .column
+            %lable Ex-service/Dependent of Ex-serviceman/Javan
+            .ui.tertiary.segment
+              .ui.stackable.two.column.grid
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :ex_service, "Yes"
+                    %label Yes
+                .column
+                  .ui.radio.checkbox.checked
+                    = f.radio_button :ex_service, "No", checked: @current_user.ex_service.nil? || @current_user.ex_service == 'No'
+                    %label No
+            %lable.indication
+              %i.warning.circle.icon
+              SELECT THE APPROPRIATE
+          .column
+            %lable Are you a Holder of NSS certificate
+            .ui.tertiary.segment
+              .ui.stackable.two.column.grid
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :nss, "Yes"
+                    %label Yes
+                .column
+                  .ui.radio.checkbox.checked
+                    = f.radio_button :nss, "No", checked: @current_user.nss.nil? || @current_user.nss == 'No'
+                    %label No
+            %lable.indication
+              %i.warning.circle.icon
+              SELECT THE APPROPRIATE
+          .column
+            %lable Are you a Holder of NCC certificate
+            .ui.tertiary.segment
+              .ui.stackable.five.column.grid
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :ncc, "Yes"
+                    %label Yes
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :ncc, "A"
+                    %label A
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :ncc, "B"
+                    %label B
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :ncc, "C"
+                    %label C
+                .column
+                  .ui.radio.checkbox.checked
+                    = f.radio_button :ncc, "No", checked: current_user.ncc.nil? || current_user.ncc == 'No'
+                    %label No
+            %lable.indication
+              %i.warning.circle.icon
+              SELECT YES FOR 75% ATTENDANCE CERTIFICATE ONLY
+      .ui.secondary.black.segment
+        %h4{class:"ui header"} Extra-curricular (Certificates should be presented)
+        .ui.stackable.two.column.grid
+          .column
+            %lable Have you got first place/A Grade in Arts Festival (National, District, State Level)?
+            .ui.tertiary.segment
+              .ui.stackable.two.column.grid
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :arts, "Yes"
+                    %label Yes
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :arts, "No", checked: current_user.arts.nil? || current_user.arts == 'No'
+                    %label No
+            %lable.indication
+              %i.warning.circle.icon
+              SELECT THE APPROPRIATE
+          .column
+            %lable Have you got first place/A Grade in sports/games (National, District, State Level)?
+            .ui.tertiary.segment
+              .ui.stackable.two.column.grid
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :sports, "Yes"
+                    %label Yes
+                .column
+                  .ui.radio.checkbox.checked
+                    = f.radio_button :sports, "No", checked: current_user.sports.nil? || current_user.sports == 'No'
+                    %label No
+            %lable.indication
+              %i.warning.circle.icon
+              SELECT THE APPROPRIATE
+      .ui.secondary.black.segment
+        %h4{class:"ui header"} Miscellaneous
+        .ui.stackable.two.column.grid
+          .column
+            %lable No of chances taken for passing the qualifying examination
+            .ui.tertiary.segment
+              .ui.stackable.four.column.grid
+                .column
+                  .ui.radio.checkbox.checked
+                    = f.radio_button :no_of_chances, "One", checked: current_user.no_of_chances.nil? || current_user.no_of_chances == 'One'
+                    %label One
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :no_of_chances, "Two"
+                    %label Two
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :no_of_chances, "Three"
+                    %label Three
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :no_of_chances, "More"
+                    %label More
+            %lable.indication
+              %i.warning.circle.icon
+              SELECT THE APPROPRIATE
+          .column
+            %lable Have you worked in the illiteracy eradication programme?
+            .ui.tertiary.segment
+              .ui.stackable.two.column.grid
+                .column
+                  .ui.radio.checkbox
+                    = f.radio_button :illiteracy_eradication, "Yes"
+                    %label Yes
+                .column
+                  .ui.radio.checkbox.checked
+                    = f.radio_button :illiteracy_eradication, "No", checked: current_user.illiteracy_eradication.nil? || current_user.illiteracy_eradication == 'No'
+                    %label No
+            %lable.indication
+              %i.warning.circle.icon
+              SELECT THE APPROPRIATE
+  .field
+    = f.submit 'Save & Proceed', class: "ui submit proceed button"

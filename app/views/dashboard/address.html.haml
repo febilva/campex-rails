@@ -1,0 +1,104 @@
+%h1 Student Addresses
+
+= form_for current_user, html:{class:"ui fluid form"}, remote:true do |f|
+  #error_messages
+  = hidden_field_tag 'step_name', 'Address'
+  .field
+    .ui.segment.black.required.field
+      %label Permanent Address
+      .required.field
+        = f.text_field :address_line1, placeholder: "Address Line 1"
+        .label.indication
+          %i.warning.circle.icon
+          enter your address (eg:- House Name)
+      .required.afield
+        = f.text_field :address_line2, placeholder: "Address Line 2"
+        .label.indication
+          %i.warning.circle.icon
+          enter your address 2 (eg:- Street Name)
+      .two.fields
+        .required.field
+          = f.select :country_id, options_from_collection_for_select(Country.all, :id, :name), {}, {class: 'ui search dropdown'}
+          .label.indication
+            %i.warning.circle.icon
+            select your country
+        .required.field
+          = f.collection_select :state_id, State.all, :id, :name, {}, {class: "ui search dropdown", placeholder: "State"}
+          .label.indication
+            %i.warning.circle.icon
+            select your state
+      .two.fields
+        .required.field
+          = f.collection_select :district_id, District.all, :id, :name, {}, {id: 'districs_select', class: "ui search dropdown", placeholder: "District"}
+          .label.indication
+            %i.warning.circle.icon
+            select your district
+        .required.field
+          = f.text_field :taluk, placeholder: "Taluk"
+          .label.indication
+            %i.warning.circle.icon
+            enter your taluk
+      .two.fields
+        .required.field
+          = f.text_field :post_office, placeholder: "Post Office"
+          .label.indication
+            %i.warning.circle.icon
+            enter your post office
+        .required.field
+          = f.text_field :pincode, placeholder: "Pincode"
+          .label.indication
+            %i.warning.circle.icon
+            enter your pincode
+      .field
+        .ui.divider
+        .ui.communication.checkbox
+          = check_box_tag :same_address, 'same_address'
+          = f.label "Copy Permanent Address to Communication Address"
+
+    .ui.communication.segment.black.required.field
+      %label Communication Address
+      .required.field
+        = f.text_field :comm_address_line1, placeholder: "Address Line 1"
+        .label.indication
+          %i.warning.circle.icon
+          enter your address (eg:- House Name)
+      .required.field
+        = f.text_field :comm_address_line2, placeholder: "Address Line 2"
+        .label.indication
+          %i.warning.circle.icon
+          enter your address  (eg:- Street Name)
+      .two.fields
+        .required.field
+          = f.select :comm_country_id, options_from_collection_for_select(Country.all, :id, :name), {}, {class: 'ui search dropdown'}
+          .label.indication
+            %i.warning.circle.icon
+            select your country
+        .required.field
+          = f.collection_select :comm_state_id, State.all, :id, :name, {}, {class: "ui search dropdown", placeholder: "State"}
+          .label.indication
+            %i.warning.circle.icon
+            select your state
+      .two.fields
+        .required.field
+          = f.collection_select :comm_district_id, District.all, :id, :name, {}, {id: 'comm_districs_select', class: "ui search dropdown", placeholder: "District"}
+          .label.indication
+            %i.warning.circle.icon
+            select your district
+        .required.field
+          = f.text_field :comm_taluk, placeholder: "Taluk"
+          .label.indication
+            %i.warning.circle.icon
+            enter your taluk
+      .two.fields
+        .required.field
+          = f.text_field :comm_post_office, placeholder: "Post Office"
+          .label.indication
+            %i.warning.circle.icon
+            enter your post office
+        .required.field
+          = f.text_field :comm_pincode, placeholder: "Pincode"
+          .label.indication
+            %i.warning.circle.icon
+            enter your pincode
+  .field
+    = f.submit 'Save & Proceed', class: "ui submit proceed button"

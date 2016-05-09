@@ -4,6 +4,7 @@ class DashboardController < ApplicationController
 
   def instructions
     if request.post?
+      @origin_step = RegistrationStep.find_by_name('Instructions')
       @registration_form = current_user.registration_form
       unless @registration_form.instructions_read
         @registration_form.increment(:current_step)
@@ -14,6 +15,18 @@ class DashboardController < ApplicationController
   end
 
   def personal
+  end
+
+  def address
+  end
+
+  def guardian
+  end
+
+  def weightages
+  end
+
+  def phase_completed
   end
 
   def update_menu

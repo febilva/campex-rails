@@ -44,9 +44,22 @@ class StudentsController < ApplicationController
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
         format.json { render :show, status: :ok, location: @student }
+        format.js do
+          @registration_form = current_user.registration_form
+          @origin_step = RegistrationStep.find_by_name(params[:step_name])
+          if @registration_form.current_step == @origin_step.position
+            @registration_form.increment(:current_step)
+            @registration_form.save
+          end
+
+          render :template => 'dashboard/proceed2_next'
+        end
       else
         format.html { render :edit }
         format.json { render json: @student.errors, status: :unprocessable_entity }
+        format.js do
+          render :template => 'dashboard/proceed2_next'
+        end
       end
     end
   end
@@ -69,6 +82,10 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:email, :name, :gender)
+      params.require(:student).permit(:email, :name, :gender, :dob, :blood_group, :religion,
+      :reservation_category_id, :nationality_id, :aadhar_no, :birth_place, :mobile_no, :phone_no,
+      :address_line1, :address_line2, :country_id, :state_id, :district_id, :taluk, :post_office,
+      :pincode, :comm_address_line1, :comm_address_line2, :comm_country_id, :comm_state_id, :comm_district_id,
+      :comm_taluk, :comm_post_office, :comm_pincode)
     end
 end

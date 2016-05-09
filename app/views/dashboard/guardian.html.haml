@@ -1,0 +1,137 @@
+.ui.segment
+  %h4.ui.horizontal.header.divider
+    %i.user.icon
+    Parent / Guardian
+
+  .row
+    = form_for current_user.guardian, html:{class:"ui fluid form"}, remote:true do |f|
+      #error_messages
+      = hidden_field_tag 'step_name', 'Guardian'
+      .field
+        .two.fields
+          .required.field
+            = f.label :name
+            = f.text_field :name, placeholder: "Name"
+            .label.indication
+              %i.warning.circle.icon
+              enter parent's name
+          .required.field
+            = f.label  :gender
+            .ui.selection.dropdown
+              = f.hidden_field :gender
+              .default.text
+                Gender
+              %i.dropdown.icon
+              .menu
+                .item{data:{value:"Male", text:"Male"}}
+                  %i.male.icon
+                  Male
+                .item{data:{value:"Female", text:"Female"}}
+                  %i.male.icon
+                  Female
+                .item{data:{value:"Neutral", text:"Neutral"}}
+                  %i.other.gender.icon
+                  Neutral
+            .label.indication
+              %i.warning.circle.icon
+              select parent's gender
+        .two.fields
+          .field
+            = f.label :email
+            = f.text_field :email, placeholder: "Parent email"
+            .label.indication
+              %i.warning.circle.icon
+              select parent's email
+          .field
+            .two.fields
+              .required.field
+                = f.label :mobile_no
+                = f.text_field :mobile_no, placeholder: "Mobile No"
+                .label.indication
+                  %i.warning.circle.icon
+                  enter parent's mobile number
+              .field
+                = f.label :phone_no
+                = f.text_field :phone_no, placeholder: "Landline number"
+                .label.indication
+                  %i.warning.circle.icon
+                  enter landline number
+        .two.fields
+          .required.field
+            = f.label :relationship
+            = f.text_field :relationship
+            .label.indication
+              %i.warning.circle.icon
+              enter relation with parent
+          .required.field
+            = f.label :qualification
+            = f.collection_select :qualification_id, Qualification.all, :id, :name, {}, {class: "ui dropdown"}
+            .label.indication
+              %i.warning.circle.icon
+              select parent's qualification
+        .two.fields
+          .required.field
+            = f.label :occupation
+            = f.collection_select :occupation_id, Occupation.all, :id, :name, {}, {class: "ui dropdown"}
+            .label.indication
+              %i.warning.circle.icon
+              enter parent's occupation
+          .field
+            = f.label :annual_income
+            = f.text_field :annual_income, placeholder: "Annual income"
+            .label.indication
+              %i.warning.circle.icon
+              enter parent's annual income( in Rs )
+        .field
+          .ui.divider
+          .ui.communication.checkbox
+            = check_box_tag :same_address, 'same_address'
+            = f.label "Copy Permanent Address to Communication Address"
+        .ui.communication.segment.black.required.field
+          %label Permanent Address
+          .field
+            = f.text_field :address_line1, placeholder: "Address Line 1"
+            .label.indication
+              %i.warning.circle.icon
+              enter your address (eg:- House Name)
+          .field
+            = f.text_field :address_line2, placeholder: "Address Line 2"
+            .label.indication
+              %i.warning.circle.icon
+              enter your address 2 (eg:- Street Name)
+          .two.fields
+            .field
+              = f.select :country_id, options_from_collection_for_select(Country.all, :id, :name), {}, {class: 'ui search dropdown'}
+              .label.indication
+                %i.warning.circle.icon
+                select country
+            .field
+              = f.collection_select :state_id, State.all, :id, :name, {}, {class: "ui search dropdown", placeholder: "State"}
+              .label.indication
+                %i.warning.circle.icon
+                select state
+          .two.fields
+            .field
+              = f.collection_select :district_id, District.all, :id, :name, {}, {id: 'districs_select', class: "ui search dropdown", placeholder: "District"}
+              .label.indication
+                %i.warning.circle.icon
+                select district
+            .field
+              = f.text_field :taluk, placeholder: "Taluk"
+              .label.indication
+                %i.warning.circle.icon
+                enter taluk
+          .two.fields
+            .field
+              = f.text_field :post_office, placeholder: "Post Office"
+              .label.indication
+                %i.warning.circle.icon
+                enter post office
+            .field
+              = f.text_field :pincode, placeholder: "Pincode"
+              .label.indication
+                %i.warning.circle.icon
+                enter pincode
+        .row
+          .field
+            = f.submit 'Save & Proceed', class: "ui submit proceed button"
