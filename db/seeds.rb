@@ -414,3 +414,23 @@ if State.all.count == 0
    'PY' => 'Puducherry',
  }.each{ |code, name| State.create(code: code, name: name, country_id: india.id) }
 end
+
+if District.all.count == 0
+  kerala = State.find_by_name('Kerala')
+  kerala_districts = {
+    'AL' => 'Alappuzha',
+    'ER' => 'Ernakulam',
+    'ID' => 'Idukki',
+    'KN' => 'Kannur',
+    'KS' => 'Kasaragod',
+    'KL' => 'Kollam',
+    'KT' => 'Kottayam',
+    'KZ' => 'Kozhikode',
+    'MA' => 'Malappuram',
+    'PL' => 'Palakkad',
+    'PT' => 'Pathanamthitta',
+    'TV' => 'Thiruvananthapuram',
+    'TS' => 'Thrissur',
+    'WS' => 'Wayanad'
+  }.each{ |code, name| District.create(code: code, name: name, state_id: kerala.id) }
+end

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :countries do
-    resources :states
+  resources :countries, shallow: true do
+    resources :states do
+      resources :districts
+    end
   end
   resources :reservation_categories do
     resources :castes

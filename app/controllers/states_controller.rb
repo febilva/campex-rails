@@ -1,5 +1,5 @@
 class StatesController < ApplicationController
-  before_action :set_states
+  before_action :set_country, except: [:show, :edit, :update, :destroy]
   before_action :set_state, only: [:show, :edit, :update, :destroy]
 
   # GET countries/1/states
@@ -25,7 +25,7 @@ class StatesController < ApplicationController
     @state = @country.states.build(state_params)
 
     if @state.save
-      redirect_to([@state.country, @state], notice: 'State was successfully created.')
+      redirect_to(@state, notice: 'State was successfully created.')
     else
       render action: 'new'
     end
@@ -34,7 +34,7 @@ class StatesController < ApplicationController
   # PUT countries/1/states/1
   def update
     if @state.update_attributes(state_params)
-      redirect_to([@state.country, @state], notice: 'State was successfully updated.')
+      redirect_to(@state, notice: 'State was successfully updated.')
     else
       render action: 'edit'
     end
@@ -44,17 +44,17 @@ class StatesController < ApplicationController
   def destroy
     @state.destroy
 
-    redirect_to country_states_url(@country)
+    redirect_to country_states_url(@state.country)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_states
+    def set_country
       @country = Country.find(params[:country_id])
     end
 
     def set_state
-      @state = @country.states.find(params[:id])
+      @state = State.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

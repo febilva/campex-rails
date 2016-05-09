@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509082203) do
+ActiveRecord::Schema.define(version: 20160509083616) do
 
   create_table "castes", force: :cascade do |t|
     t.integer  "reservation_category_id", limit: 4
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20160509082203) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "districts", force: :cascade do |t|
+    t.integer  "state_id",   limit: 4
+    t.string   "name",       limit: 255
+    t.string   "code",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "districts", ["state_id"], name: "fk_rails_61da3337c8", using: :btree
 
   create_table "registration_forms", force: :cascade do |t|
     t.integer  "student_id",        limit: 4
@@ -81,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160509082203) do
   end
 
   add_foreign_key "castes", "reservation_categories"
+  add_foreign_key "districts", "states"
   add_foreign_key "registration_forms", "students"
   add_foreign_key "states", "countries"
 end

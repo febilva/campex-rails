@@ -1,4 +1,4 @@
-= form_for [@state.country, @state] do |f|
+= form_for [@country, @state] do |f|
   -if @state.errors.any?
     #error_explanation
       %h2= "#{pluralize(@state.errors.count, "error")} prohibited this state from being saved:"
