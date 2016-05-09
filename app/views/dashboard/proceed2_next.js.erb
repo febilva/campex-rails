@@ -1,0 +1,21 @@
+<%  if @instance and @instance.errors.any? %>
+  $('#error_messages').html("<%= escape_javascript render 'errors', instance: @instance %>");
+<% else %>
+  <% @to_step = current_user.registration_form.current_step %>
+
+  <% if @to_step >= Configurator.first.max_enabled_step %>
+    <% controller_name = "dashboard" %>
+    <% action_name = "phase_completed" %>
+  <% else %>
+    <% controller_name = RegistrationStep.find_by(position: @to_step).controller %>
+    <% action_name = RegistrationStep.find_by(position: @to_step).action %>
+  <% end %>
+  <% template = "#{controller_name}/#{action_name}" %>
+<% end %>
+
+$('.real-content').html("");
+$('.real-content').html("<%= escape_javascript render(template: template) %>");
+$(".real-content").removeClass( "loading" );
+
+window.history.replaceState({}, nil,
+'<%= url_for(controller: controller_name, action: action_name, only_path: false) %>');

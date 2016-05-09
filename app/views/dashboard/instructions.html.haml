@@ -1,0 +1,12 @@
+.ui.red.inverted.segment
+  Instructions
+.segment
+  .row
+    = render 'shared/instructions'
+  - if current_user.registration_form.instructions_read == false
+    - info_text = 'Read and understood all instructions.'
+  - else
+    - info_text = 'Take me to the form'
+  .ui.row
+    .row
+      = button_to info_text, { :action => 'instructions'}, remote:true, class: "ui positive submit proceed button"

@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508232454) do
+ActiveRecord::Schema.define(version: 20160509040130) do
+
+  create_table "configurators", force: :cascade do |t|
+    t.integer  "max_enabled_step", limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "registration_forms", force: :cascade do |t|
     t.integer  "student_id",        limit: 4
@@ -30,6 +36,8 @@ ActiveRecord::Schema.define(version: 20160508232454) do
     t.string   "url",        limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "controller", limit: 255
+    t.string   "action",     limit: 255
   end
 
   create_table "students", force: :cascade do |t|

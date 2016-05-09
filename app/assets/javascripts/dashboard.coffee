@@ -1,3 +1,7 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).on "ready page:load", ->
+  if $('#side_menu').length
+    $.getScript('/dashboard/update_menu.js')
+
+  $(".proceed.button").click ->
+    $(".real-content").addClass( "loading" );
+    $("html, body").animate({ scrollTop: 0 }, "slow");

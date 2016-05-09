@@ -5,6 +5,6 @@
 
   - menu_items = RegistrationStep.all.order(:position) || []
   - menu_items.each do |reg_step|
-    %a.disabled.item{:href => reg_step[:href]}
+    %a.disabled.menu.item{:href => reg_step[:url], 'data-position' => reg_step.position}
       %i{class: reg_step[:icon] + " icon"}
       = reg_step[:name]
