@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @reservation_category.name
+
+= link_to 'Edit', edit_reservation_category_path(@reservation_category)
+\|
+= link_to 'Back', reservation_categories_path

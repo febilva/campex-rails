@@ -1,0 +1,21 @@
+%h1 Listing reservation_categories
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @reservation_categories.each do |reservation_category|
+      %tr
+        %td= reservation_category.name
+        %td= link_to 'Show', reservation_category
+        %td= link_to 'Edit', edit_reservation_category_path(reservation_category)
+        %td= link_to 'Destroy', reservation_category, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Reservation category', new_reservation_category_path
