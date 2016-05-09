@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :countries
   resources :reservation_categories do
     resources :castes
   end

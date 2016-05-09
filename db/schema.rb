@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509070638) do
+ActiveRecord::Schema.define(version: 20160509081338) do
 
   create_table "castes", force: :cascade do |t|
     t.integer  "reservation_category_id", limit: 4
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 20160509070638) do
     t.integer  "max_enabled_step", limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "code",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "registration_forms", force: :cascade do |t|
