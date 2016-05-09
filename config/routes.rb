@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :countries
+  resources :countries do
+    resources :states
+  end
   resources :reservation_categories do
     resources :castes
   end
