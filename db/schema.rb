@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510170524) do
+ActiveRecord::Schema.define(version: 20160510172457) do
 
   create_table "castes", force: :cascade do |t|
     t.integer  "reservation_category_id", limit: 4
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 20160510170524) do
     t.string   "comm_taluk",              limit: 255
     t.integer  "comm_district_id",        limit: 4
     t.integer  "comm_state_id",           limit: 4
-    t.string   "comm_country_id",         limit: 255
+    t.integer  "comm_country_id",         limit: 4
     t.string   "comm_pincode",            limit: 255
     t.boolean  "blind"
     t.boolean  "deaf"
