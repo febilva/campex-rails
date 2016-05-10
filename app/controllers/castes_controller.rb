@@ -5,6 +5,10 @@ class CastesController < ApplicationController
   # GET reservation_categories/1/castes
   def index
     @castes = @reservation_category.castes
+    respond_to do |format|
+      format.html
+      format.json { render json: @castes }
+    end
   end
 
   # GET reservation_categories/1/castes/1

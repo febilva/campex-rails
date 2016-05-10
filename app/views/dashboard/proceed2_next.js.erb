@@ -1,7 +1,6 @@
 <%  if @student and @student.errors.any? %>
   $(".real-content").removeClass( "loading" );
   $('#error_messages').html("<%= escape_javascript render 'errors', instance: @student %>");
-  $(".real-content").removeClass( "loading" );
   $(document).trigger('page:load');
 <% else %>
   <% if @origin_step.position == Configurator.first.max_enabled_step %>
@@ -14,9 +13,10 @@
   <% template = "#{controller_name}/#{action_name}" %>
 
   $('.real-content').html("");
-  $(".real-content").removeClass( "loading" );
-  $(document).trigger('page:load');
   $('.real-content').html("<%= escape_javascript render(template: template) %>");
+  $(document).trigger('page:load');
 
   window.history.replaceState({}, '', '<%= url_for(controller: controller_name, action: action_name, only_path: false) %>');
 <% end %>
+
+$(".real-content").removeClass( "loading" );

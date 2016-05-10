@@ -20,20 +20,20 @@
     .two.fields
       .required.field
         = f.label  :gender
-        = f.select :gender, options_for_select([ 'Male', 'Female', 'Neutral' ]), {}, class: 'ui dropdown'
+        = f.select :gender, options_for_select([ '', 'Male', 'Female', 'Neutral' ], current_user.gender), {}, class: 'ui dropdown'
         .label.indication
           %i.warning.circle.icon
           select your gender
       .required.field
         = f.label :blood_group
-        = f.select :blood_group, options_for_select([ 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-' ]), {}, class: 'ui dropdown'
+        = f.select :blood_group, options_for_select([ '', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-' ], current_user.blood_group), {}, class: 'ui dropdown'
         .label.indication
           %i.warning.circle.icon
           select your blood group
     .two.fields
       .required.field
         = f.label :religion
-        = f.select :religion, options_for_select([ 'Hindu', 'Islam', 'Christian', [ 'No Religion', 'None']]), {}, class: 'ui dropdown'
+        = f.select :religion, options_for_select([ '', 'Christian', 'Hindu', 'Islam', [ 'No Religion', 'None']], current_user.religion), {}, class: 'ui dropdown'
         .label.indication
           %i.warning.circle.icon
           select your religion
@@ -41,20 +41,20 @@
         .two.fields
           .required.field
             = f.label :Community_category
-            = f.select :reservation_category_id, options_from_collection_for_select(ReservationCategory.all, :id, :name), {}, {class: 'ui search dropdown'}
+            = f.select :reservation_category_id, options_from_collection_for_select(ReservationCategory.all, :id, :name, current_user.reservation_category_id), {include_blank:true}, {class: 'ui search reservation category dropdown'}
             .label.indication
               %i.warning.circle.icon
               select appropriate category
           .required.field
             = f.label  :caste
-            = f.select :caste_id, [], {}, {id: 'castes_select', class: "ui search dropdown"}
+            = f.select :caste_id, options_from_collection_for_select(Caste.all, :id, :name, current_user.caste_id), {include_blank: true}, { class: "ui search castes dropdown" }
             .label.indication
               %i.warning.circle.icon
               select appropriate caste
     .two.fields
       .required.field
         = f.label :nationality
-        = f.select :nationality_id, options_from_collection_for_select(Country.all, :id, :name), {}, {class: 'ui search dropdown'}
+        = f.select :nationality_id, options_from_collection_for_select(Country.all, :id, :name, current_user.nationality.try(:id)), {include_blank: true}, {class: 'ui search dropdown'}
         .label.indication
           %i.warning.circle.icon
           select your nationality
@@ -73,7 +73,7 @@
           enter your birth place
       .field
         = f.label  :born_in
-        = f.select :blood_group, options_for_select([ 'Panchayath', 'Municipality', 'Corporation' ]), {}, class: 'ui dropdown'
+        = f.select :born_in, options_for_select([ '', 'Panchayath', 'Municipality', 'Corporation' ], current_user.born_in), {}, class: 'ui dropdown'
         .label.indication
           %i.warning.circle.icon
           select birth place status

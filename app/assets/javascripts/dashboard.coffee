@@ -10,6 +10,7 @@ $(document).on "ready page:load", ->
     now = new Date
     $('input[class="datepicker"]').daterangepicker {
       singleDatePicker: true
+      format: 'DD-MM-YYYY'
       showDropdowns: true
       startDate: new Date(now.getFullYear() - 18, now.getMonth(), now.getDate())
     }
@@ -18,7 +19,7 @@ $(document).on "ready page:load", ->
     $('.ui.checkbox').checkbox()
     $('.ui.communication.checkbox').on 'change', ->
       $('.communication.segment').toggle()
-      
+
       if $('.ui.communication.checkbox').checkbox('is checked')
         value = "None"
       else
