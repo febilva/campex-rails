@@ -1,4 +1,11 @@
 $(document).on "ready page:load", ->
+  $('.ui.gender.dropdown').dropdown()
+  $('.ui.blood.group.dropdown').dropdown()
+  $('.ui.religion.dropdown').dropdown()
+  $('.ui.reservation.category.dropdown').dropdown()
+  $('.ui.nationality.dropdown').dropdown()
+  $('.ui.born.in.dropdown').dropdown()
+
   $('.ui.reservation.category.dropdown').change ->
     $('#student_caste_id').dropdown('clear')
 
@@ -8,7 +15,6 @@ $(document).on "ready page:load", ->
       name: 'description'
       value: 'data-value'
     apiSettings:
-      stateContext : '#student_reservation_category_id'
       url: '/reservation_categories/{reservation_category_id}/castes.json'
       beforeSend: (settings) ->
         category_id = $('#student_reservation_category_id').find(':selected').val()

@@ -20,20 +20,20 @@
     .two.fields
       .required.field
         = f.label  :gender
-        = f.select :gender, options_for_select([ '', 'Male', 'Female', 'Neutral' ], current_user.gender), {}, class: 'ui dropdown'
+        = f.select :gender, options_for_select([ '', 'Male', 'Female', 'Neutral' ], current_user.gender), {}, class: 'ui gender dropdown'
         .label.indication
           %i.warning.circle.icon
           select your gender
       .required.field
         = f.label :blood_group
-        = f.select :blood_group, options_for_select([ '', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-' ], current_user.blood_group), {}, class: 'ui dropdown'
+        = f.select :blood_group, options_for_select([ '', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-' ], current_user.blood_group), {}, class: 'ui blood group dropdown'
         .label.indication
           %i.warning.circle.icon
           select your blood group
     .two.fields
       .required.field
         = f.label :religion
-        = f.select :religion, options_for_select([ '', 'Christian', 'Hindu', 'Islam', [ 'No Religion', 'None']], current_user.religion), {}, class: 'ui dropdown'
+        = f.select :religion, options_for_select([ '', 'Christian', 'Hindu', 'Islam', [ 'No Religion', 'None']], current_user.religion), {}, class: 'ui religion dropdown'
         .label.indication
           %i.warning.circle.icon
           select your religion
@@ -54,7 +54,7 @@
     .two.fields
       .required.field
         = f.label :nationality
-        = f.select :nationality_id, options_from_collection_for_select(Country.all, :id, :name, current_user.nationality.try(:id)), {include_blank: true}, {class: 'ui search dropdown'}
+        = f.select :nationality_id, options_from_collection_for_select(Country.all, :id, :name, current_user.nationality.try(:id)), {include_blank: true}, {class: 'ui search nationality dropdown'}
         .label.indication
           %i.warning.circle.icon
           select your nationality
@@ -73,7 +73,7 @@
           enter your birth place
       .field
         = f.label  :born_in
-        = f.select :born_in, options_for_select([ '', 'Panchayath', 'Municipality', 'Corporation' ], current_user.born_in), {}, class: 'ui dropdown'
+        = f.select :born_in, options_for_select([ '', 'Panchayath', 'Municipality', 'Corporation' ], current_user.born_in), {}, class: 'ui born in dropdown'
         .label.indication
           %i.warning.circle.icon
           select birth place status

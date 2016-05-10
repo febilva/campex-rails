@@ -15,7 +15,6 @@ $(document).on "ready page:load", ->
       startDate: new Date(now.getFullYear() - 18, now.getMonth(), now.getDate())
     }
 
-    $('.dropdown').dropdown({ transition: 'drop' })
     $('.ui.checkbox').checkbox()
     $('.ui.communication.checkbox').on 'change', ->
       $('.communication.segment').toggle()
