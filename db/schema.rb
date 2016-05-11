@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511050743) do
+ActiveRecord::Schema.define(version: 20160511052512) do
 
   create_table "boards", force: :cascade do |t|
     t.string   "name",              limit: 255
@@ -177,8 +177,10 @@ ActiveRecord::Schema.define(version: 20160511050743) do
     t.integer  "no_of_chances",           limit: 4
     t.boolean  "illiteracy_eradication"
     t.boolean  "same_address"
+    t.integer  "board_id",                limit: 4
   end
 
+  add_index "students", ["board_id"], name: "index_students_on_board_id", using: :btree
   add_index "students", ["caste_id"], name: "index_students_on_caste_id", using: :btree
   add_index "students", ["comm_district_id"], name: "index_students_on_comm_district_id", using: :btree
   add_index "students", ["comm_state_id"], name: "index_students_on_comm_state_id", using: :btree
