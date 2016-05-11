@@ -1,0 +1,19 @@
+= form_for [@stream, @stream_subject] do |f|
+  -if @stream_subject.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@stream_subject.errors.count, "error")} prohibited this stream_subject from being saved:"
+      %ul
+        - @stream_subject.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :part
+    = f.number_field :part
+  .field
+    = f.label :max_marks
+    = f.number_field :max_marks
+  .actions
+    = f.submit 'Save'

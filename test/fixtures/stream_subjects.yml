@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stream_id: 
+  name: MyString
+  part: 1
+  max_marks: 1
+
+two:
+  stream_id: 
+  name: MyString
+  part: 1
+  max_marks: 1

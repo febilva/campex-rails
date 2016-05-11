@@ -1,0 +1,6 @@
+development:
+  client_id: 236632995290-v17nq72gsbp4ifnua59e75obd4hej6p9.apps.googleusercontent.com
+  client_secret: omq0I3_TIjwP32DeZu0KaPnR
+production:
+  client_id: <%= ENV['GOOGLE_KEY'] %>
+  client_secret: <%= ENV['GOOGLE_SECRET'] %>

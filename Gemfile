@@ -38,6 +38,8 @@ gem "haml-rails", "~> 0.9"
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 # Facebook OAuth2 Strategy for OmniAuth
 gem 'omniauth-facebook'
+# Google OAuth2 strategy for OmniAuth
+gem 'omniauth-google-oauth2'
 # Momentjs for date picker dependency
 gem 'momentjs-rails'
 

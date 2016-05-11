@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     unless @student
       user_info = {}
 
-      if params[:provider] == 'facebook'
+      if params[:provider] == 'facebook' || params[:provider] == 'google_oauth2'
         user_info = {
           email: request.env['omniauth.auth']['info']['email'],
           name: request.env['omniauth.auth']['info']['name'],

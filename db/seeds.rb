@@ -5,9 +5,10 @@ if RegistrationStep.all.count == 0
     { position: 2, name: 'Address', icon: 'mail outline', url: '/dashboard/address', controller: 'dashboard', action: 'address' },
     { position: 3, name: 'Guardian', icon: 'users', url: '/dashboard/guardian', controller: 'dashboard', action: 'guardian' },
     { position: 4, name: 'Weightages', icon: 'exchange', url: '/dashboard/weightages', controller: 'dashboard', action: 'weightages' },
-    { position: 5, name: 'Marks', icon: 'book', url: '/dashboard/marks', controller: 'dashboard', action: 'marks' },
-    { position: 6, name: 'Choices', icon: 'list', url: '/dashboard/choices', controller: 'dashboard', action: 'choices' },
-    { position: 7, name: 'Submission', icon: 'info', url: '/dashboard/submission', controller: 'dashboard', action: 'submission' },
+    { position: 5, name: 'Education', icon: 'university', url: '/dashboard/education', controller: 'dashboard', action: 'education' },
+    { position: 6, name: 'Marks', icon: 'book', url: '/dashboard/marks', controller: 'dashboard', action: 'marks' },
+    { position: 7, name: 'Choices', icon: 'list', url: '/dashboard/choices', controller: 'dashboard', action: 'choices' },
+    { position: 8, name: 'Submission', icon: 'info', url: '/dashboard/submission', controller: 'dashboard', action: 'submission' },
   ].each{ |s| RegistrationStep.create(position: s[:position], name: s[:name], icon: s[:icon], url: s[:url], controller: s[:controller], action: s[:action])}
 end
 
@@ -447,4 +448,260 @@ if Occupation.all.count == 0
   'Software Professional', 'Bank Officer', 'Manager', 'Govt Employee',
   'Driver', 'Business Man', 'Tailor', 'Carpenter', 'Painter', 'Retired',
   'Other'].each { |occupation| Occupation.create(name: occupation) }
+end
+
+if Board.all.count == 0
+  # Boards, their streams and corresponding subjects
+
+  # HSE Kerala Board
+  board = {name: 'HSE Kerala', subject_structure: '1, 1, 4'}
+  board_combinations = {
+    'Science' => [
+      ['ENGLISH'],
+      ['COMPUTER INFORMATION TECHNOLOGY', 'ARABIC', 'FRENCH', 'GERMAN', 'HINDI', 'KANNADA',
+        'LATIN', 'MALAYALAM ', 'RUSSIAN', 'SANSKRIT', 'SYRIAC', 'TAMIL', 'URUDU'],
+      ['BIOLOGY', 'CHEMISTRY', 'COMPUTER SCIENCE', 'ELECTRONICS', 'GEOLOGY', 'HOME SCIENCE',
+        'MATHEMATICS', 'PHYSICS', 'PSHYCHOLOGY', 'STATISTICS']
+    ],
+    'Humanities' => [
+      ['ENGLISH'],
+      ['COMPUTER INFORMATION TECHNOLOGY', 'ARABIC', 'FRENCH', 'GERMAN', 'HINDI', 'KANNADA',
+        'LATIN', 'MALAYALAM ', 'RUSSIAN', 'SANSKRIT', 'SYRIAC', 'TAMIL', 'URUDU'],
+      ['ANTHROPOLOGY', 'ARABIC', 'COMMUNICATIVE ENGLISH', 'COMPUTER APPLICATION', 'ECONOMICS',
+        'ENGLISH LITERATURE', 'GANDHIAN STUDIES', 'GEOGRAPHY', 'GEOLOGY', 'HINDI', 'HISTORY',
+        'ISLAMIC HISTORY', 'JOURNALISM', 'KANNADA', 'MALAYALAM', 'MUSIC', 'PHILOSOPHY',
+        'POLITICS', 'PSHYCHOLOGY', 'SANSKRIT SAHITYA', 'SANSKRIT SASTHRA',
+        'SOCIAL WORK', 'SOCIOLOGY', 'STATISTICS', 'TAMIL', 'URDU']
+    ],
+    'Commerce' => [
+      ['ENGLISH'],
+      ['COMPUTER INFORMATION TECHNOLOGY', 'ARABIC', 'FRENCH', 'GERMAN', 'HINDI', 'KANNADA',
+        'LATIN', 'MALAYALAM ', 'RUSSIAN', 'SANSKRIT', 'SYRIAC', 'TAMIL', 'URUDU'],
+      ['ACCOUNTANCY', 'BUSINESS STUDIES', 'COMPUTER APPLICATION', 'ECONOMICS', 'MATHS',
+        'POLITICS', 'STATISTICS']
+    ]
+  }
+
+  @board = Board.new(name: board[:name], subject_structure: board[:subject_structure])
+  board_combinations.each do |stream, parts|
+    @stream = Stream.new(board: @board, name: stream)
+    @stream.save
+    parts.each_with_index do |part, count|
+      part.each do |subject|
+        StreamSubject.new(stream: @stream, name: subject, part: count+1, max_marks: 100).save
+      end
+    end
+  end
+
+  # VHSE Kerala Board
+  board = {name: 'VHSE Kerala', subject_structure: '1, 1, 1, 3, 1'}
+  board_combinations = {
+    'Science' => [
+      ['ENGLISH'],
+      ['GFC'],
+      ['AGRICULTURE', 'ALLIED HEALTH CARE', 'ANIMAL HUSBANDRY', 'BUSINESS & COMMERCE', 'ENGINEERING', 'FISHERIES', 'HOME SCIENCE',
+        'HUMANITIES'],
+      ['BIOLOGY', 'CHEMISTRY', 'PHYSICS'],
+      ['NONE', 'MATHEMATICS']
+    ],
+    'Humanities' => [
+      ['ENGLISH'],
+      ['GFC'],
+      ['AGRICULTURE', 'ALLIED HEALTH CARE', 'ANIMAL HUSBANDRY', 'BUSINESS & COMMERCE', 'ENGINEERING', 'FISHERIES', 'HOME SCIENCE',
+        'HUMANITIES'],
+      ['ECONOMICS', 'GEOGRAPHY', 'HISTORY']
+    ],
+    'Commerce' => [
+      ['ENGLISH'],
+      ['GFC'],
+      ['AGRICULTURE', 'ALLIED HEALTH CARE', 'ANIMAL HUSBANDRY', 'BUSINESS & COMMERCE', 'ENGINEERING', 'FISHERIES', 'HOME SCIENCE',
+        'HUMANITIES'],
+      ['ACCOUNTANCY WITH AFS', 'ACCOUNTANCY WITH CA', 'BUSINESS STUDIES', 'MANAGEMENT']
+    ]
+  }
+
+  @board = Board.new(name: board[:name], subject_structure: board[:subject_structure])
+  board_combinations.each do |stream, parts|
+    @stream = Stream.new(board: @board, name: stream)
+    @stream.save
+    parts.each_with_index do |part, count|
+      part.each do |subject|
+        StreamSubject.new(stream: @stream, name: subject, part: count+1, max_marks: 200).save
+      end
+    end
+  end
+
+  # CBSE Board
+  board = {name: 'CBSE', subject_structure: '1, 1, 3, 1'}
+  board_combinations = {
+    'Science' => [
+      ['ENGLISH'],
+      ['NONE', 'ARABIC', 'FRENCH', 'GERMAN', 'HINDI', 'KANNADA', 'LATIN', 'MALAYALAM ', 'RUSSIAN', 'SANSKRIT', 'SYRIAC', 'TAMIL', 'URUDU'],
+      ['AGRICULTURE', 'BIOLOGY', 'BIOTECHNOLOGY', 'CHEMISTRY', 'COMPUTER SCIENCE', 'ENGINEERING GRAPHICS', 'HOME SCIENCE',
+        'INFORMATICS PRACTICES', 'MATHEMATICS', 'MULTIMEDIA AND WEB TECHNOLOGY', 'PHYSICS'],
+      ['NONE', 'AGRICULTURE', 'BIOLOGY', 'BIOTECHNOLOGY', 'CHEMISTRY', 'COMPUTER SCIENCE', 'ENGINEERING GRAPHICS', 'HOME SCIENCE',
+        'INFORMATICS PRACTICES', 'MATHEMATICS', 'MULTIMEDIA AND WEB TECHNOLOGY', 'PHYSICS']
+
+    ],
+    'Humanities' => [
+      ['ENGLISH'],
+      ['NONE', 'ARABIC', 'FRENCH', 'GERMAN', 'HINDI', 'KANNADA', 'LATIN', 'MALAYALAM ', 'RUSSIAN', 'SANSKRIT', 'SYRIAC', 'TAMIL', 'URUDU'],
+      ['CREATIVE WRITING AND TRANSLATION STUDIES', 'ECONOMICS', 'FASHION STUDIES', 'FINE ARTS', 'GEOGRAPHY', 'GRAPHIC DESIGN',
+        'HERITAGE CRAFTS', 'HISTORY', 'HUMAN RIGHTS AND GENDER STUDIES', 'LEGAL STUDIES',
+        'MASS MEDIA STUDIES AND KNOWLEDGE TRADITIONS AND PRACTICES OF INDIA', 'MUSIC AND DANCE', 'PHILOSOPHY',
+        'PHYSICAL EDUCATION', 'POLITICAL SCIENCE', 'PSYCHOLOGY', 'SOCIOLOGY'],
+      ['NONE', 'CREATIVE WRITING AND TRANSLATION STUDIES', 'ECONOMICS', 'FASHION STUDIES', 'FINE ARTS', 'GEOGRAPHY', 'GRAPHIC DESIGN',
+        'HERITAGE CRAFTS', 'HISTORY', 'HUMAN RIGHTS AND GENDER STUDIES', 'LEGAL STUDIES',
+        'MASS MEDIA STUDIES AND KNOWLEDGE TRADITIONS AND PRACTICES OF INDIA', 'MUSIC AND DANCE', 'PHILOSOPHY',
+        'PHYSICAL EDUCATION', 'POLITICAL SCIENCE', 'PSYCHOLOGY', 'SOCIOLOGY']
+
+
+    ],
+    'Commerce' => [
+      ['ENGLISH'],
+      ['NONE', 'ARABIC', 'FRENCH', 'GERMAN', 'HINDI', 'KANNADA', 'LATIN', 'MALAYALAM ', 'RUSSIAN', 'SANSKRIT', 'SYRIAC', 'TAMIL', 'URUDU'],
+      ['ACCOUNTANCY', 'BUSINESS STUDIES', 'COMPUTER SCIENCE', 'ENTREPRENEURSHIP', 'INFORMATICS PRACTICES'],
+      ['NONE','ACCOUNTANCY', 'BUSINESS STUDIES', 'COMPUTER SCIENCE', 'ENTREPRENEURSHIP', 'INFORMATICS PRACTICES']
+    ]
+  }
+
+  @board = Board.new(name: board[:name], subject_structure: board[:subject_structure])
+  board_combinations.each do |stream, parts|
+    @stream = Stream.new(board: @board, name: stream)
+    @stream.save
+    parts.each_with_index do |part, count|
+      part.each do |subject|
+        max_mark = subject=='NONE' ? 0 : 100
+        StreamSubject.new(stream: @stream, name: subject, part: count+1, max_marks: max_mark).save
+      end
+    end
+  end
+
+  # ICS Board
+  board = {name: 'ICS', subject_structure: '1, 1, 3, 2'}
+  board_combinations = {
+    'Science' => [
+      ['ENGLISH'],
+      ['NONE', 'ARABIC', 'FRENCH', 'GERMAN', 'HINDI', 'KANNADA', 'LATIN', 'MALAYALAM ', 'RUSSIAN', 'SANSKRIT', 'SYRIAC', 'TAMIL', 'URUDU'],
+      ['BIOLOGY', 'BIOTECHNOLOGY', 'CHEMISTRY', 'COMPUTER SCIENCE', 'ELECTRICITY & ELECTRONICS', 'ENGINEERING SCIENCE', 'ENVIRONMENTAL SCIENCE',
+        'GEOLOGY', 'HOME SCIENCE', 'MATHEMATICS', 'PHYSICS', 'PSHYCHOLOGY', 'STATISTICS'],
+      ['NONE', 'ACCOUNTS', 'ART MUSIC (INDIAN OR WESTERN)', 'BUSINESS STUDIES', 'COMMERCE', 'ECONOMICS',
+        'ELECTIVE ENGLISH', 'FASHION DESIGNING', 'GEOGRAPHY', 'GEOMETRICAL & BUILDING DRAWING', 'GEOMETRICAL & MECHANICAL DRAWING', 'HISTORY',
+        'PHYSICAL EDUCATION', 'POLITICAL SCIENCE', 'PSYCHOLOGY', 'SOCIOLOGY']
+    ],
+    'Humanities' => [
+      ['ENGLISH'],
+      ['NONE', 'ARABIC', 'FRENCH', 'GERMAN', 'HINDI', 'KANNADA', 'LATIN', 'MALAYALAM ', 'RUSSIAN', 'SANSKRIT', 'SYRIAC', 'TAMIL', 'URUDU'],
+      ['COMMUNICATIVE ENGLISH', 'ECONOMICS', 'ENGLISH LITERATURE', 'GANDHIAN STUDIES', 'GEOGRAPHY', 'GEOLOGY', 'HISTORY',
+        'ISLAMIC HISTORY', 'JOURNALISM', 'MUSIC', 'PHILOSOPHY', 'POLITICS', 'PSHYCHOLOGY', 'SANSKRIT SAHITYA', 'SANSKRIT SASTHRA',
+        'SOCIAL WORK', 'SOCIOLOGY', 'STATISTICS'],
+      ['NONE','ACCOUNTS', 'ART MUSIC (INDIAN OR WESTERN)', 'BIOLOGY', 'BIOTECHNOLOGY', 'BUSINESS STUDIES', 'CHEMISTRY',
+        'COMMERCE', 'COMPUTER SCIENCE', 'ECONOMICS', 'ELECTIVE ENGLISH', 'ELECTRICITY & ELECTRONICS', 'ENGINEERING SCIENCE',
+        'ENVIRONMENTAL SCIENCE', 'FASHION DESIGNING', 'GEOGRAPHY', 'GEOMETRICAL & BUILDING DRAWING', 'GEOMETRICAL & MECHANICAL DRAWING',
+        'HISTORY', 'HOME SCIENCE', 'MATHEMATICS', 'PHYSICAL EDUCATION', 'PHYSICS', 'POLITICAL SCIENCE', 'PSYCHOLOGY', 'SOCIOLOGY']
+    ],
+    'Commerce' => [
+      ['ENGLISH'],
+      ['NONE', 'ARABIC', 'FRENCH', 'GERMAN', 'HINDI', 'KANNADA', 'LATIN', 'MALAYALAM ', 'RUSSIAN', 'SANSKRIT', 'SYRIAC', 'TAMIL', 'URUDU'],
+      ['ACCOUNTS', 'BUSINESS STUDIES', 'COMMERCE', 'ECONOMICS', 'MATHEMATICS', 'POLITICAL SCIENCE'],
+      ['NONE','ART MUSIC (INDIAN OR WESTERN)', 'BIOLOGY', 'BIOTECHNOLOGY', 'CHEMISTRY', 'COMPUTER SCIENCE', 'ELECTIVE ENGLISH',
+        'ELECTRICITY & ELECTRONICS', 'ENGINEERING SCIENCE', 'ENVIRONMENTAL SCIENCE', 'FASHION DESIGNING', 'GEOGRAPHY',
+        'GEOMETRICAL & BUILDING DRAWING', 'GEOMETRICAL & MECHANICAL DRAWING', 'HISTORY', 'HOME SCIENCE', 'PHYSICAL EDUCATION',
+        'PHYSICS', 'PSYCHOLOGY', 'SOCIOLOGY'],
+    ]
+  }
+
+  @board = Board.new(name: board[:name], subject_structure: board[:subject_structure])
+  board_combinations.each do |stream, parts|
+    @stream = Stream.new(board: @board, name: stream)
+    @stream.save
+    parts.each_with_index do |part, count|
+      part.each do |subject|
+        max_mark = subject=='NONE' ? 0 : 100
+        StreamSubject.new(stream: @stream, name: subject, part: count+1, max_marks: max_mark).save
+      end
+    end
+  end
+
+  # HSE Tamilnadu Board
+  board = {name: 'HSE Tamilnadu', subject_structure: '1, 1, 4'}
+  board_combinations = {
+    'Science' => [
+      ['ENGLISH'],
+      ['COMPUTER INFORMATION TECHNOLOGY', 'ARABIC', 'FRENCH', 'GERMAN', 'HINDI', 'KANNADA',
+        'LATIN', 'MALAYALAM ', 'RUSSIAN', 'SANSKRIT', 'SYRIAC', 'TAMIL', 'URUDU'],
+      ['BIOLOGY', 'CHEMISTRY', 'COMPUTER SCIENCE', 'ELECTRONICS', 'GEOLOGY', 'HOME SCIENCE',
+        'MATHEMATICS', 'PHYSICS', 'PSHYCHOLOGY', 'STATISTICS']
+    ],
+    'Humanities' => [
+      ['ENGLISH'],
+      ['COMPUTER INFORMATION TECHNOLOGY', 'ARABIC', 'FRENCH', 'GERMAN', 'HINDI', 'KANNADA',
+        'LATIN', 'MALAYALAM ', 'RUSSIAN', 'SANSKRIT', 'SYRIAC', 'TAMIL', 'URUDU'],
+      ['ANTHROPOLOGY', 'ARABIC', 'COMMUNICATIVE ENGLISH', 'COMPUTER APPLICATION', 'ECONOMICS',
+        'ENGLISH LITERATURE', 'GANDHIAN STUDIES', 'GEOGRAPHY', 'GEOLOGY', 'HINDI', 'HISTORY',
+        'ISLAMIC HISTORY', 'JOURNALISM', 'KANNADA', 'MALAYALAM', 'MUSIC', 'PHILOSOPHY',
+        'POLITICS', 'PSHYCHOLOGY', 'SANSKRIT SAHITYA', 'SANSKRIT SASTHRA',
+        'SOCIAL WORK', 'SOCIOLOGY', 'STATISTICS', 'TAMIL', 'URDU']
+    ],
+    'Commerce' => [
+      ['ENGLISH'],
+      ['COMPUTER INFORMATION TECHNOLOGY', 'ARABIC', 'FRENCH', 'GERMAN', 'HINDI', 'KANNADA',
+        'LATIN', 'MALAYALAM ', 'RUSSIAN', 'SANSKRIT', 'SYRIAC', 'TAMIL', 'URUDU'],
+      ['ACCOUNTANCY', 'BUSINESS STUDIES', 'COMPUTER APPLICATION', 'ECONOMICS', 'MATHS',
+        'POLITICS', 'STATISTICS']
+      ]
+    }
+
+  @board = Board.new(name: board[:name], subject_structure: board[:subject_structure])
+  board_combinations.each do |stream, parts|
+    @stream = Stream.new(board: @board, name: stream)
+    @stream.save
+    parts.each_with_index do |part, count|
+      part.each do |subject|
+        StreamSubject.new(stream: @stream, name: subject, part: count+1, max_marks: 200).save
+      end
+    end
+  end
+
+  # NIOS Board
+  board = {name: 'NIOS', subject_structure: '1, 1, 3, 3'}
+  board_combinations = {
+    'Science' => [
+      ['ENGLISH'],
+      ['NONE', 'BENGALI', 'HINDI', 'ODIYA','SANSKRIT', 'TAMIL', 'URUDU'],
+      ['BIOLOGY', 'CHEMISTRY', 'COMPUTER SCIENCE', 'ENVIRONMENTAL SCIENCE', 'MATHEMATICS', 'PHYSICS', 'PSYCHOLOGY'],
+      ['NONE', 'ACCOUNTANCY', 'COMMERCE', 'COMPUTER SCIENCE', 'DATA ENTRY OPERATIONS', 'ECONOMICS', 'ENVIRONMENTAL SCIENCE',
+        'GEOGRAPHY', 'HISTORY', 'HOME SCIENCE', 'MASS COMMUNICATION', 'MATHEMATICS', 'PAINTING', 'POLITICAL SCIENCE',
+        'PSYCHOLOGY', 'SOCIOLOGY']
+    ],
+    'Humanities' => [
+      ['ENGLISH'],
+      ['NONE', 'BENGALI', 'HINDI', 'ODIYA','SANSKRIT', 'TAMIL', 'URUDU'],
+      ['ECONOMICS', 'ENVIRONMENTAL SCIENCE', 'GEOGRAPHY', 'HISTORY', 'HOME SCIENCE', 'MASS COMMUNICATION', 'POLITICAL SCIENCE',
+        'PSYCHOLOGY', 'SOCIOLOGY'],
+      ['NONE', 'ACCOUNTANCY', 'COMMERCE', 'COMPUTER SCIENCE', 'DATA ENTRY OPERATIONS', 'ECONOMICS', 'ENVIRONMENTAL SCIENCE',
+        'GEOGRAPHY', 'HISTORY', 'HOME SCIENCE', 'MASS COMMUNICATION', 'MATHEMATICS', 'PAINTING', 'POLITICAL SCIENCE',
+        'PSYCHOLOGY', 'SOCIOLOGY']
+    ],
+    'Commerce' => [
+      ['ENGLISH'],
+      ['NONE', 'BENGALI', 'HINDI', 'ODIYA','SANSKRIT', 'TAMIL', 'URUDU'],
+      ['ACCOUNTANCY', 'COMMERCE', 'COMPUTER SCIENCE', 'HOME SCIENCE', 'MASS COMMUNICATION'],
+      ['NONE', 'ACCOUNTANCY', 'COMMERCE', 'COMPUTER SCIENCE', 'DATA ENTRY OPERATIONS', 'ECONOMICS', 'ENVIRONMENTAL SCIENCE',
+        'GEOGRAPHY', 'HISTORY', 'HOME SCIENCE', 'MASS COMMUNICATION', 'MATHEMATICS', 'PAINTING', 'POLITICAL SCIENCE',
+        'PSYCHOLOGY', 'SOCIOLOGY']
+    ]
+  }
+
+  @board = Board.new(name: board[:name], subject_structure: board[:subject_structure])
+  board_combinations.each do |stream, parts|
+    @stream = Stream.new(board: @board, name: stream)
+    @stream.save
+    parts.each_with_index do |part, count|
+      part.each do |subject|
+        max_mark = subject=='NONE' ? 0 : 100
+        StreamSubject.new(stream: @stream, name: subject, part: count+1, max_marks: max_mark).save
+      end
+    end
+  end
 end

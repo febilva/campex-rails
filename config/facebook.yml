@@ -1,6 +1,6 @@
 development:
-  client_id: 472784899584036
-  client_secret: f6860a671415615af73ba03643663435
+  client_id: 476112865917906
+  client_secret: fa55f73e40953a4d0461c14bf0ce012a
 production:
   client_id: <%= ENV['FACEBOOK_KEY'] %>
   client_secret: <%= ENV['FACEBOOK_SECRET'] %>
