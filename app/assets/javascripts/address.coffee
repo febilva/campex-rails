@@ -1,3 +1,4 @@
+
 $(document).on "ready page:load", ->
   $('.ui.permanent.countries.dropdown').dropdown()
   $('.ui.communication.countries.dropdown').dropdown()
@@ -100,24 +101,22 @@ $(document).on "ready page:load", ->
       address_elements = [ 'address_line1', 'address_line2',
         'countries', 'states', 'districts', 'taluk', 'post_office', 'pincode' ]
 
-      generate_address_values = (address_elements) ->
-        values = {}
-        $.each address_elements, (i, element) ->
-          element_class = ".permanent.".concat(element.replace("_", "."))
-          element_value = $(element_class).first().val()
-          if !element_value
-            element_value = $(element_class).first().find(':selected').val()
-          values[element] = element_value
-        values
-
-      replicate_address_values = (address_elements, values) ->
+      clear_address_values = (address_elements, values) ->
         $.each address_elements, (i, element) ->
           element_class = ".communication.".concat(element.replace("_", "."))
-          element_class2 = ".permanent.".concat(element.replace("_", "."))
-          if !$(element_class).hasClass("dropdown")
-            $(element_class).first().val(values[element] || "")
+          if $(element_class).hasClass("dropdown")
+            $(element_class).dropdown("clear")
+          else
+            $(element_class).val("")
 
+
+      observe_communication_same =  ->
+        if $('.ui.communication.checkbox').checkbox('is checked')
+          $('.communication.segment').hide()
+          clear_address_values
+        else
+          $('.communication.segment').show()
+
+      observe_communication_same()
       $('.ui.communication.checkbox').on 'change', ->
-        values = generate_address_values(address_elements)
-        $('.communication.segment').toggle()
-        replicate_address_values(address_elements, values)
+        observe_communication_same()

@@ -41,17 +41,6 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1.json
   def update
     respond_to do |format|
-      if(params[:same_address])
-        @student.comm_address_line1 = student_params[:address_line1]
-        @student.comm_address_line2 = student_params[:address_line2]
-        @student.comm_country_id = student_params[:country_id]
-        @student.comm_state_id = student_params[:state_id]
-        @student.comm_district_id = student_params[:district_id]
-        @student.comm_taluk = student_params[:taluk]
-        @student.comm_post_office = student_params[:post_office]
-        @student.comm_pincode = student_params[:pincode]
-      end
-
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
         format.json { render :show, status: :ok, location: @student }
@@ -97,6 +86,6 @@ class StudentsController < ApplicationController
       :reservation_category_id, :nationality_id, :aadhar_no, :birth_place, :mobile_no, :phone_no,
       :address_line1, :address_line2, :country_id, :state_id, :district_id, :taluk, :post_office,
       :pincode, :comm_address_line1, :comm_address_line2, :comm_country_id, :comm_state_id, :comm_district_id,
-      :comm_taluk, :comm_post_office, :comm_pincode, :born_in, :caste_id)
+      :comm_taluk, :comm_post_office, :comm_pincode, :born_in, :caste_id, :same_address)
     end
 end
