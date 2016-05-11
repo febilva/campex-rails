@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :boards
+  resources :boards do
+    resources :streams
+  end
   resources :guardians
   resources :occupations
   resources :qualifications

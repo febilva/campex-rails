@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511052512) do
+ActiveRecord::Schema.define(version: 20160511053543) do
 
   create_table "boards", force: :cascade do |t|
     t.string   "name",              limit: 255
@@ -133,6 +133,15 @@ ActiveRecord::Schema.define(version: 20160511052512) do
 
   add_index "states", ["country_id"], name: "fk_rails_40bd891262", using: :btree
 
+  create_table "streams", force: :cascade do |t|
+    t.integer  "board_id",   limit: 4
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "streams", ["board_id"], name: "fk_rails_fad1b1fd6c", using: :btree
+
   create_table "students", force: :cascade do |t|
     t.string   "email",                   limit: 255
     t.string   "name",                    limit: 255
@@ -200,6 +209,7 @@ ActiveRecord::Schema.define(version: 20160511052512) do
   add_foreign_key "guardians", "students"
   add_foreign_key "registration_forms", "students"
   add_foreign_key "states", "countries"
+  add_foreign_key "streams", "boards"
   add_foreign_key "students", "castes"
   add_foreign_key "students", "countries"
   add_foreign_key "students", "districts"
