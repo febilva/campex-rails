@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511003738) do
+ActiveRecord::Schema.define(version: 20160511015751) do
 
   create_table "castes", force: :cascade do |t|
     t.integer  "reservation_category_id", limit: 4
@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 20160511003738) do
     t.boolean  "orthopedic"
     t.boolean  "ex_service"
     t.boolean  "nss"
-    t.boolean  "ncc"
+    t.string   "ncc",                     limit: 255
     t.boolean  "arts"
     t.boolean  "sports"
     t.integer  "no_of_chances",           limit: 4
