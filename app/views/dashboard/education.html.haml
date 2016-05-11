@@ -2,7 +2,7 @@
 
 = form_for current_user, html:{class:'ui fluid form'}, remote:true do |f|
   #error_messages
-  = hidden_field_tag 'step_name', 'Personal'
+  = hidden_field_tag 'step_name', 'Education'
   .field
     .two.fields
       .required.field
@@ -10,33 +10,33 @@
         = f.text_field :name , placeholder:  'Name'
         .label.indication
           %i.warning.circle.icon
-          Exactly as in SSLC book
+          exactly as in SSLC book
       .required.field
         = f.label :date_of_birth
         = f.text_field :dob, class: 'datepicker'
         .label.indication
           %i.warning.circle.icon
-          Exactly as in SSLC book
+          exactly as in SSLC book
     .two.fields
       .required.field
         = f.label  :gender
         = f.select :gender, options_for_select([ '', 'Male', 'Female', 'Neutral' ], current_user.gender), {}, class: 'ui gender dropdown'
         .label.indication
           %i.warning.circle.icon
-          Select your Gender
+          select your gender
       .required.field
         = f.label :blood_group
         = f.select :blood_group, options_for_select([ '', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-' ], current_user.blood_group), {}, class: 'ui blood group dropdown'
         .label.indication
           %i.warning.circle.icon
-          Select your blood group
+          select your blood group
     .two.fields
       .required.field
         = f.label :religion
         = f.select :religion, options_for_select([ '', 'Christian', 'Hindu', 'Islam', [ 'No Religion', 'None']], current_user.religion), {}, class: 'ui religion dropdown'
         .label.indication
           %i.warning.circle.icon
-          Select your religion
+          select your religion
       .field
         .two.fields
           .required.field
@@ -44,51 +44,51 @@
             = f.select :reservation_category_id, options_from_collection_for_select(ReservationCategory.all, :id, :name, current_user.reservation_category_id), {include_blank:true}, {class: 'ui search reservation category dropdown'}
             .label.indication
               %i.warning.circle.icon
-              Select appropriate category
+              select appropriate category
           .required.field
             = f.label  :caste
             = f.select :caste_id, options_from_collection_for_select(Caste.all, :id, :name, current_user.caste_id), {include_blank: true}, { class: "ui search castes dropdown" }
             .label.indication
               %i.warning.circle.icon
-              Select appropriate caste
+              select appropriate caste
     .two.fields
       .required.field
         = f.label :nationality
         = f.select :nationality_id, options_from_collection_for_select(Country.all, :id, :name, current_user.nationality.try(:id)), {include_blank: true}, {class: 'ui search nationality dropdown'}
         .label.indication
           %i.warning.circle.icon
-          Select your Nationality
+          select your nationality
       .field
         = f.label "Aadhar Number"
         = f.text_field :aadhar_no, placeholder: "Aadhar Number"
         .label.indication
           %i.warning.circle.icon
-          Enter your Aadhar Number(Indians) / SSN(Foreigners)
+          enter your Aadhar Number(Indians) / SSN(Foreigners)
     .two.fields
       .required.field
         = f.label :place_of_birth
         = f.text_field :birth_place, placeholder: "Birth place"
         .label.indication
           %i.warning.circle.icon
-          Enter your birth place
+          enter your birth place
       .field
         = f.label  :born_in
         = f.select :born_in, options_for_select([ '', 'Panchayath', 'Municipality', 'Corporation' ], current_user.born_in), {}, class: 'ui born in dropdown'
         .label.indication
           %i.warning.circle.icon
-          Select birth place status
+          select birth place status
     .two.fields
       .required.field
         = f.label :mobile_no
         = f.text_field :mobile_no, placeholder: "Mobile Number"
         .label.indication
           %i.warning.circle.icon
-          Enter your mobile number
+          enter your mobile number
       .field
         = f.label :phone_no
         = f.text_field :phone_no, placeholder: "Landline Number"
         .label.indication
           %i.warning.circle.icon
-          Enter your landline number
+          enter your landline number
   .field
     = f.submit 'Save & Proceed', class: "ui submit proceed button"

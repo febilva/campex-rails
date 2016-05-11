@@ -8,6 +8,7 @@ class Student < ActiveRecord::Base
   belongs_to :district
   belongs_to :comm_state, foreign_key: "comm_state_id", class_name: "State"
   belongs_to :comm_district, foreign_key: "comm_district_id", class_name: "District"
+  belongs_to :board
 
   before_validation :check_if_same_address
 

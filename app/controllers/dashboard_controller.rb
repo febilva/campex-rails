@@ -26,6 +26,12 @@ class DashboardController < ApplicationController
   def weightages
   end
 
+  def education
+  end
+
+  def marks
+  end
+
   def phase_completed
   end
 
