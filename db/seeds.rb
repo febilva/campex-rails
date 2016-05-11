@@ -5,9 +5,10 @@ if RegistrationStep.all.count == 0
     { position: 2, name: 'Address', icon: 'mail outline', url: '/dashboard/address', controller: 'dashboard', action: 'address' },
     { position: 3, name: 'Guardian', icon: 'users', url: '/dashboard/guardian', controller: 'dashboard', action: 'guardian' },
     { position: 4, name: 'Weightages', icon: 'exchange', url: '/dashboard/weightages', controller: 'dashboard', action: 'weightages' },
-    { position: 5, name: 'Marks', icon: 'book', url: '/dashboard/marks', controller: 'dashboard', action: 'marks' },
-    { position: 6, name: 'Choices', icon: 'list', url: '/dashboard/choices', controller: 'dashboard', action: 'choices' },
-    { position: 7, name: 'Submission', icon: 'info', url: '/dashboard/submission', controller: 'dashboard', action: 'submission' },
+    { position: 5, name: 'Education', icon: 'university', url: '/dashboard/education', controller: 'dashboard', action: 'education' },
+    { position: 6, name: 'Marks', icon: 'book', url: '/dashboard/marks', controller: 'dashboard', action: 'marks' },
+    { position: 7, name: 'Choices', icon: 'list', url: '/dashboard/choices', controller: 'dashboard', action: 'choices' },
+    { position: 8, name: 'Submission', icon: 'info', url: '/dashboard/submission', controller: 'dashboard', action: 'submission' },
   ].each{ |s| RegistrationStep.create(position: s[:position], name: s[:name], icon: s[:icon], url: s[:url], controller: s[:controller], action: s[:action])}
 end
 

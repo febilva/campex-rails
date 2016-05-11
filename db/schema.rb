@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511063359) do
+ActiveRecord::Schema.define(version: 20160511072341) do
 
   create_table "boards", force: :cascade do |t|
     t.string   "name",              limit: 255
@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(version: 20160511063359) do
     t.boolean  "illiteracy_eradication"
     t.boolean  "same_address"
     t.integer  "board_id",                limit: 4
+    t.integer  "stream_id",               limit: 4
   end
 
   add_index "students", ["board_id"], name: "index_students_on_board_id", using: :btree
@@ -209,6 +210,7 @@ ActiveRecord::Schema.define(version: 20160511063359) do
   add_index "students", ["nationality_id"], name: "index_students_on_nationality_id", using: :btree
   add_index "students", ["reservation_category_id"], name: "index_students_on_reservation_category_id", using: :btree
   add_index "students", ["state_id"], name: "index_students_on_state_id", using: :btree
+  add_index "students", ["stream_id"], name: "index_students_on_stream_id", using: :btree
 
   add_foreign_key "castes", "reservation_categories"
   add_foreign_key "districts", "states"
