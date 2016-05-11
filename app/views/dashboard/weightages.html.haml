@@ -14,11 +14,11 @@
               .ui.stackable.two.column.grid
                 .column
                   .ui.radio.checkbox
-                    = f.radio_button :blind, "Yes"
+                    = f.radio_button :blind, true
                     %label Yes
                 .column
                   .ui.radio.checkbox.checked
-                    = f.radio_button :blind, "No", checked: @current_user.blind.nil? || @current_user.blind == 'No'
+                    = f.radio_button :blind, false
                     %label No
             %lable.indication
               %i.warning.circle.icon
@@ -29,11 +29,11 @@
               .ui.stackable.two.column.grid
                 .column
                   .ui.radio.checkbox
-                    = f.radio_button :deaf, "Yes"
+                    = f.radio_button :deaf, true
                     %label Yes
                 .column
                   .ui.radio.checkbox.checked
-                    = f.radio_button :deaf, "No", checked: @current_user.deaf.nil? || @current_user.deaf == 'No'
+                    = f.radio_button :deaf, false
                     %label No
             %lable.indication
               %i.warning.circle.icon
@@ -44,11 +44,11 @@
               .ui.stackable.two.column.grid
                 .column
                   .ui.radio.checkbox
-                    = f.radio_button :orthopedic, "Yes"
+                    = f.radio_button :orthopedic, true
                     %label Yes
                 .column
                   .ui.radio.checkbox.checked
-                    = f.radio_button :orthopedic, "No", checked: @current_user.orthopedic.nil? || @current_user.orthopedic == 'No'
+                    = f.radio_button :orthopedic, false
                     %label No
             %lable.indication
               %i.warning.circle.icon
@@ -62,11 +62,11 @@
               .ui.stackable.two.column.grid
                 .column
                   .ui.radio.checkbox
-                    = f.radio_button :ex_service, "Yes"
+                    = f.radio_button :ex_service, true
                     %label Yes
                 .column
                   .ui.radio.checkbox.checked
-                    = f.radio_button :ex_service, "No", checked: @current_user.ex_service.nil? || @current_user.ex_service == 'No'
+                    = f.radio_button :ex_service, false
                     %label No
             %lable.indication
               %i.warning.circle.icon
@@ -77,11 +77,11 @@
               .ui.stackable.two.column.grid
                 .column
                   .ui.radio.checkbox
-                    = f.radio_button :nss, "Yes"
+                    = f.radio_button :nss, true
                     %label Yes
                 .column
                   .ui.radio.checkbox.checked
-                    = f.radio_button :nss, "No", checked: @current_user.nss.nil? || @current_user.nss == 'No'
+                    = f.radio_button :nss, false
                     %label No
             %lable.indication
               %i.warning.circle.icon
@@ -108,7 +108,7 @@
                     %label C
                 .column
                   .ui.radio.checkbox.checked
-                    = f.radio_button :ncc, "No", checked: current_user.ncc.nil? || current_user.ncc == 'No'
+                    = f.radio_button :ncc, "No"
                     %label No
             %lable.indication
               %i.warning.circle.icon
@@ -122,11 +122,11 @@
               .ui.stackable.two.column.grid
                 .column
                   .ui.radio.checkbox
-                    = f.radio_button :arts, "Yes"
+                    = f.radio_button :arts, true
                     %label Yes
                 .column
                   .ui.radio.checkbox
-                    = f.radio_button :arts, "No", checked: current_user.arts.nil? || current_user.arts == 'No'
+                    = f.radio_button :arts, false
                     %label No
             %lable.indication
               %i.warning.circle.icon
@@ -137,11 +137,11 @@
               .ui.stackable.two.column.grid
                 .column
                   .ui.radio.checkbox
-                    = f.radio_button :sports, "Yes"
+                    = f.radio_button :sports, true
                     %label Yes
                 .column
                   .ui.radio.checkbox.checked
-                    = f.radio_button :sports, "No", checked: current_user.sports.nil? || current_user.sports == 'No'
+                    = f.radio_button :sports, false
                     %label No
             %lable.indication
               %i.warning.circle.icon
@@ -155,19 +155,19 @@
               .ui.stackable.four.column.grid
                 .column
                   .ui.radio.checkbox.checked
-                    = f.radio_button :no_of_chances, "One", checked: current_user.no_of_chances.nil? || current_user.no_of_chances == 'One'
+                    = f.radio_button :no_of_chances, 1
                     %label One
                 .column
                   .ui.radio.checkbox
-                    = f.radio_button :no_of_chances, "Two"
+                    = f.radio_button :no_of_chances, 2
                     %label Two
                 .column
                   .ui.radio.checkbox
-                    = f.radio_button :no_of_chances, "Three"
+                    = f.radio_button :no_of_chances, 3
                     %label Three
                 .column
                   .ui.radio.checkbox
-                    = f.radio_button :no_of_chances, "More"
+                    = f.radio_button :no_of_chances, 4
                     %label More
             %lable.indication
               %i.warning.circle.icon
@@ -178,11 +178,11 @@
               .ui.stackable.two.column.grid
                 .column
                   .ui.radio.checkbox
-                    = f.radio_button :illiteracy_eradication, "Yes"
+                    = f.radio_button :illiteracy_eradication, true
                     %label Yes
                 .column
                   .ui.radio.checkbox.checked
-                    = f.radio_button :illiteracy_eradication, "No", checked: current_user.illiteracy_eradication.nil? || current_user.illiteracy_eradication == 'No'
+                    = f.radio_button :illiteracy_eradication, false
                     %label No
             %lable.indication
               %i.warning.circle.icon

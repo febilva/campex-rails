@@ -17,21 +17,7 @@
               Enter parent's name
           .required.field
             = f.label  :gender
-            .ui.selection.dropdown
-              = f.hidden_field :gender
-              .default.text
-                Gender
-              %i.dropdown.icon
-              .menu
-                .item{data:{value:"Male", text:"Male"}}
-                  %i.male.icon
-                  Male
-                .item{data:{value:"Female", text:"Female"}}
-                  %i.male.icon
-                  Female
-                .item{data:{value:"Neutral", text:"Neutral"}}
-                  %i.other.gender.icon
-                  Neutral
+            = f.select :gender, options_for_select([ '', 'Male', 'Female', 'Neutral' ], current_user.guardian.gender), {}, class: 'ui gender dropdown'
             .label.indication
               %i.warning.circle.icon
               Select parent's gender
@@ -65,14 +51,14 @@
               Enter relation with parent
           .required.field
             = f.label :qualification
-            = f.collection_select :qualification_id, Qualification.all, :id, :name, {}, {class: "ui dropdown"}
+            = f.select :qualification_id, options_from_collection_for_select(Qualification.all, :id, :name, current_user.guardian.qualification_id), {include_blank: true}, { class: "ui search qualification dropdown" }
             .label.indication
               %i.warning.circle.icon
               Select parent's qualification
         .two.fields
           .required.field
             = f.label :occupation
-            = f.collection_select :occupation_id, Occupation.all, :id, :name, {}, {class: "ui dropdown"}
+            = f.select :occupation_id, options_from_collection_for_select(Occupation.all, :id, :name, current_user.guardian.occupation_id), {include_blank: true}, { class: "ui search occupation dropdown" }
             .label.indication
               %i.warning.circle.icon
               Enter parent's occupation
@@ -85,50 +71,50 @@
         .field
           .ui.divider
           .ui.communication.checkbox
-            = check_box_tag :same_address, 'same_address'
-            = f.label "Copy Permanent Address to Communication Address"
+            = f.check_box :same_address
+            = f.label "Copy Student Permanent Address to Guardian Address"
         .ui.communication.segment.black.required.field
           %label Permanent Address
           .field
-            = f.text_field :address_line1, placeholder: "Address Line 1"
+            = f.text_field :address_line1, placeholder: "Address Line 1", class: "permanent address line1"
             .label.indication
               %i.warning.circle.icon
               Enter your address (eg:- House Name)
           .field
-            = f.text_field :address_line2, placeholder: "Address Line 2"
+            = f.text_field :address_line2, placeholder: "Address Line 2", class: "permanent address line2"
             .label.indication
               %i.warning.circle.icon
               Enter your address 2 (eg:- Street Name)
           .two.fields
             .field
-              = f.select :country_id, options_from_collection_for_select(Country.all, :id, :name), {}, {class: 'ui search dropdown'}
+              = f.select :country_id, options_from_collection_for_select(Country.all, :id, :name), {}, {class: 'ui search permanent countries dropdown'}
               .label.indication
                 %i.warning.circle.icon
                 Select Country
             .field
-              = f.collection_select :state_id, State.all, :id, :name, {}, {class: "ui search dropdown", placeholder: "State"}
+              = f.select :state_id, options_from_collection_for_select(State.all, :id, :name, current_user.guardian.state_id), {include_blank: true}, {class: "ui search permanent states dropdown", placeholder: "State"}
               .label.indication
                 %i.warning.circle.icon
                 Select State
           .two.fields
             .field
-              = f.collection_select :district_id, District.all, :id, :name, {}, {id: 'districs_select', class: "ui search dropdown", placeholder: "District"}
+              = f.select :district_id, options_from_collection_for_select(District.all, :id, :name, current_user.guardian.district_id), {include_blank: true}, {class: "ui search permanent districts dropdown", placeholder: "District"}
               .label.indication
                 %i.warning.circle.icon
                 Select District
             .field
-              = f.text_field :taluk, placeholder: "Taluk"
+              = f.text_field :taluk, placeholder: "Taluk", class: "permanent taluk"
               .label.indication
                 %i.warning.circle.icon
                 Enter Taluk
           .two.fields
             .field
-              = f.text_field :post_office, placeholder: "Post Office"
+              = f.text_field :post_office, placeholder: "Post Office", class: "permanent post office"
               .label.indication
                 %i.warning.circle.icon
                 Enter Post Office
             .field
-              = f.text_field :pincode, placeholder: "Pincode"
+              = f.text_field :pincode, placeholder: "Pincode", class: "permanent pincode"
               .label.indication
                 %i.warning.circle.icon
                 Enter Pincode

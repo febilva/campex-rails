@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509225551) do
+ActiveRecord::Schema.define(version: 20160511015751) do
 
   create_table "castes", force: :cascade do |t|
     t.integer  "reservation_category_id", limit: 4
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160509225551) do
     t.string   "pincode",          limit: 255
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.boolean  "same_address"
   end
 
   add_index "guardians", ["country_id"], name: "index_guardians_on_country_id", using: :btree
@@ -155,18 +156,19 @@ ActiveRecord::Schema.define(version: 20160509225551) do
     t.string   "comm_taluk",              limit: 255
     t.integer  "comm_district_id",        limit: 4
     t.integer  "comm_state_id",           limit: 4
-    t.string   "comm_country_id",         limit: 255
+    t.integer  "comm_country_id",         limit: 4
     t.string   "comm_pincode",            limit: 255
     t.boolean  "blind"
     t.boolean  "deaf"
     t.boolean  "orthopedic"
     t.boolean  "ex_service"
     t.boolean  "nss"
-    t.boolean  "ncc"
+    t.string   "ncc",                     limit: 255
     t.boolean  "arts"
     t.boolean  "sports"
     t.integer  "no_of_chances",           limit: 4
     t.boolean  "illiteracy_eradication"
+    t.boolean  "same_address"
   end
 
   add_index "students", ["caste_id"], name: "index_students_on_caste_id", using: :btree

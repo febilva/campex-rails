@@ -7,96 +7,96 @@
     .ui.segment.black.required.field
       %label Permanent Address
       .required.field
-        = f.text_field :address_line1, placeholder: "Address Line 1"
+        = f.text_field :address_line1, placeholder: "Address Line 1", class: "permanent address line1"
         .label.indication
           %i.warning.circle.icon
           Enter your address (eg:- House Name)
       .required.afield
-        = f.text_field :address_line2, placeholder: "Address Line 2"
+        = f.text_field :address_line2, placeholder: "Address Line 2", class: "permanent address line2"
         .label.indication
           %i.warning.circle.icon
           Enter your address 2 (eg:- Street Name)
       .two.fields
         .required.field
-          = f.select :country_id, options_from_collection_for_select(Country.all, :id, :name), {}, {class: 'ui search dropdown'}
+          = f.collection_select :country_id, Country.all, :id, :name, { include_blank: true }, {class: 'ui search permanent countries dropdown'}
           .label.indication
             %i.warning.circle.icon
             Select your Country
         .required.field
-          = f.collection_select :state_id, State.all, :id, :name, {}, {class: "ui search dropdown", placeholder: "State"}
+          = f.select :state_id, options_from_collection_for_select(State.all, :id, :name, current_user.state_id), {include_blank: true}, {class: "ui search permanent states dropdown", placeholder: "State"}
           .label.indication
             %i.warning.circle.icon
             Select your State
       .two.fields
         .required.field
-          = f.collection_select :district_id, District.all, :id, :name, {}, {id: 'districs_select', class: "ui search dropdown", placeholder: "District"}
+          = f.select :district_id, options_from_collection_for_select(District.all, :id, :name, current_user.district_id), {include_blank: true}, {class: "ui search permanent districts dropdown", placeholder: "District"}
           .label.indication
             %i.warning.circle.icon
             Select your District
         .required.field
-          = f.text_field :taluk, placeholder: "Taluk"
+          = f.text_field :taluk, placeholder: "Taluk", class: "permanent taluk"
           .label.indication
             %i.warning.circle.icon
             Enter your Taluk
       .two.fields
         .required.field
-          = f.text_field :post_office, placeholder: "Post Office"
+          = f.text_field :post_office, placeholder: "Post Office", class: "permanent post office"
           .label.indication
             %i.warning.circle.icon
             Enter your Post Office
         .required.field
-          = f.text_field :pincode, placeholder: "Pincode"
+          = f.text_field :pincode, placeholder: "Pincode", class: "permanent pincode"
           .label.indication
             %i.warning.circle.icon
             Enter your Pincode
       .field
         .ui.divider
         .ui.communication.checkbox
-          = check_box_tag :same_address, 'same_address'
+          = f.check_box :same_address
           = f.label "Copy Permanent Address to Communication Address"
 
     .ui.communication.segment.black.required.field
       %label Communication Address
       .required.field
-        = f.text_field :comm_address_line1, placeholder: "Address Line 1"
+        = f.text_field :comm_address_line1, placeholder: "Address Line 1", class: "communication address line1"
         .label.indication
           %i.warning.circle.icon
           Enter your address (eg:- House Name)
       .required.field
-        = f.text_field :comm_address_line2, placeholder: "Address Line 2"
+        = f.text_field :comm_address_line2, placeholder: "Address Line 2", class: "communication address line2"
         .label.indication
           %i.warning.circle.icon
           Enter your address  (eg:- Street Name)
       .two.fields
         .required.field
-          = f.select :comm_country_id, options_from_collection_for_select(Country.all, :id, :name), {}, {class: 'ui search dropdown'}
+          = f.select :comm_country_id, options_from_collection_for_select(Country.all, :id, :name, current_user.comm_country_id), {include_blank: true}, {class: 'ui search communication countries dropdown'}
           .label.indication
             %i.warning.circle.icon
             Select your Country
         .required.field
-          = f.collection_select :comm_state_id, State.all, :id, :name, {}, {class: "ui search dropdown", placeholder: "State"}
+          = f.select :comm_state_id, options_from_collection_for_select(State.all, :id, :name, current_user.comm_state_id), {include_blank: true}, {class: "ui search communication states dropdown", placeholder: "State"}
           .label.indication
             %i.warning.circle.icon
             Select your State
       .two.fields
         .required.field
-          = f.collection_select :comm_district_id, District.all, :id, :name, {}, {id: 'comm_districs_select', class: "ui search dropdown", placeholder: "District"}
+          = f.select :comm_district_id, options_from_collection_for_select(District.all, :id, :name, current_user.comm_district_id), {include_blank: true}, {class: "ui search communication districts dropdown", placeholder: "District"}
           .label.indication
             %i.warning.circle.icon
             Select your District
         .required.field
-          = f.text_field :comm_taluk, placeholder: "Taluk"
+          = f.text_field :comm_taluk, placeholder: "Taluk", class: "communication taluk"
           .label.indication
             %i.warning.circle.icon
             Enter your Taluk
       .two.fields
         .required.field
-          = f.text_field :comm_post_office, placeholder: "Post Office"
+          = f.text_field :comm_post_office, placeholder: "Post Office", class: "communication post office"
           .label.indication
             %i.warning.circle.icon
             Enter your Post Office
         .required.field
-          = f.text_field :comm_pincode, placeholder: "Pincode"
+          = f.text_field :comm_pincode, placeholder: "Pincode", class: "communication pincode"
           .label.indication
             %i.warning.circle.icon
             Enter your Pincode

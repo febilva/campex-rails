@@ -5,6 +5,10 @@ class StatesController < ApplicationController
   # GET countries/1/states
   def index
     @states = @country.states
+    respond_to do |format|
+      format.html
+      format.json { render json: @states }
+    end
   end
 
   # GET countries/1/states/1

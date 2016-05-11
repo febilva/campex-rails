@@ -5,6 +5,10 @@ class DistrictsController < ApplicationController
   # GET states/1/districts
   def index
     @districts = @state.districts
+    respond_to do |format|
+      format.html
+      format.json { render json: @districts }
+    end
   end
 
   # GET states/1/districts/1
