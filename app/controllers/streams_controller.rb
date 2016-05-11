@@ -1,5 +1,5 @@
 class StreamsController < ApplicationController
-  before_action :set_streams
+  before_action :set_board, except: [:show, :edit, :update, :destroy]
   before_action :set_stream, only: [:show, :edit, :update, :destroy]
 
   # GET boards/1/streams
@@ -25,7 +25,7 @@ class StreamsController < ApplicationController
     @stream = @board.streams.build(stream_params)
 
     if @stream.save
-      redirect_to([@stream.board, @stream], notice: 'Stream was successfully created.')
+      redirect_to(@stream, notice: 'Stream was successfully created.')
     else
       render action: 'new'
     end
@@ -34,7 +34,7 @@ class StreamsController < ApplicationController
   # PUT boards/1/streams/1
   def update
     if @stream.update_attributes(stream_params)
-      redirect_to([@stream.board, @stream], notice: 'Stream was successfully updated.')
+      redirect_to(@stream, notice: 'Stream was successfully updated.')
     else
       render action: 'edit'
     end
@@ -44,17 +44,17 @@ class StreamsController < ApplicationController
   def destroy
     @stream.destroy
 
-    redirect_to board_streams_url(@board)
+    redirect_to board_streams_url(@stream.board)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_streams
+    def set_board
       @board = Board.find(params[:board_id])
     end
 
     def set_stream
-      @stream = @board.streams.find(params[:id])
+      @stream = Stream.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

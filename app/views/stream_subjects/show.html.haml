@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @stream_subject.name
+%p
+  %b Part:
+  = @stream_subject.part
+%p
+  %b Max marks:
+  = @stream_subject.max_marks
+
+= link_to 'Edit', edit_stream_subject_path(@stream_subject)
+\|
+= link_to 'Back', stream_stream_subjects_path(@stream_subject.stream)

@@ -1,0 +1,23 @@
+%h1 Listing stream_subjects
+
+%table
+  %tr
+    %th Name
+    %th Part
+    %th Max marks
+    %th
+    %th
+    %th
+
+  - @stream_subjects.each do |stream_subject|
+    %tr
+      %td= stream_subject.name
+      %td= stream_subject.part
+      %td= stream_subject.max_marks
+      %td= link_to 'Show', stream_subject
+      %td= link_to 'Edit', edit_stream_subject_path(stream_subject)
+      %td= link_to 'Destroy', stream_subject, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Stream subject', new_stream_stream_subject_path(params[:stream_id])

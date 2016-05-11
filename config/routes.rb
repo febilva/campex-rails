@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :boards do
-    resources :streams
+  resources :boards, shallow: true do
+    resources :streams do
+      resources :stream_subjects
+    end
   end
   resources :guardians
   resources :occupations
