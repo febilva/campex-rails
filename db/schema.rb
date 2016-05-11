@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511015751) do
+ActiveRecord::Schema.define(version: 20160511050743) do
+
+  create_table "boards", force: :cascade do |t|
+    t.string   "name",              limit: 255
+    t.string   "subject_structure", limit: 255
+    t.boolean  "disabled"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
 
   create_table "castes", force: :cascade do |t|
     t.integer  "reservation_category_id", limit: 4

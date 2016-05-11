@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :boards
   resources :guardians
   resources :occupations
   resources :qualifications
@@ -25,6 +26,8 @@ Rails.application.routes.draw do
     get 'address'
     get 'guardian'
     get 'weightages'
+    get 'education'
+    get 'marks'
     get 'phase_completed'
     get 'update_menu'
   end

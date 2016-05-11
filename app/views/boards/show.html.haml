@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @board.name
+%p
+  %b Subject structure:
+  = @board.subject_structure
+%p
+  %b Disabled:
+  = @board.disabled
+
+= link_to 'Edit', edit_board_path(@board)
+\|
+= link_to 'Back', boards_path
