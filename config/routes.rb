@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :registration_steps
   resources :students
 
-  root to: 'sessions#new'
+  get '/login' => 'sessions#new', as: :root
   get '/auth/:provider/callback' => 'sessions#create'
   delete '/auth/logout' => 'sessions#destroy'
 
