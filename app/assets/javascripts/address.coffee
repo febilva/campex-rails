@@ -101,9 +101,12 @@ $(document).on "ready page:load", ->
       address_elements = [ 'address_line1', 'address_line2',
         'countries', 'states', 'districts', 'taluk', 'post_office', 'pincode' ]
 
-      clear_address_values = (address_elements, values) ->
+      clear_address_values = () ->
         $.each address_elements, (i, element) ->
           element_class = ".communication.".concat(element.replace("_", "."))
+          if !$(element_class).length
+            element_class = ".permanent.".concat(element.replace("_", "."))
+
           if $(element_class).hasClass("dropdown")
             $(element_class).dropdown("clear")
           else
@@ -113,7 +116,7 @@ $(document).on "ready page:load", ->
       observe_communication_same =  ->
         if $('.ui.communication.checkbox').checkbox('is checked')
           $('.communication.segment').hide()
-          clear_address_values
+          clear_address_values()
         else
           $('.communication.segment').show()
 
