@@ -87,6 +87,7 @@ class StudentsController < ApplicationController
       :address_line1, :address_line2, :country_id, :state_id, :district_id, :taluk, :post_office,
       :pincode, :comm_address_line1, :comm_address_line2, :comm_country_id, :comm_state_id, :comm_district_id,
       :comm_taluk, :comm_post_office, :comm_pincode, :born_in, :caste_id, :same_address, :blind, :deaf,
-      :orthopedic, :ex_service, :nss, :ncc, :arts, :sports, :no_of_chances, :illiteracy_eradication)
+      :orthopedic, :ex_service, :nss, :ncc, :arts, :sports, :no_of_chances, :illiteracy_eradication,
+      :board_id, :stream_id)
     end
 end
