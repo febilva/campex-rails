@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510172457) do
+ActiveRecord::Schema.define(version: 20160510233356) do
 
   create_table "castes", force: :cascade do |t|
     t.integer  "reservation_category_id", limit: 4
@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(version: 20160510172457) do
     t.boolean  "sports"
     t.integer  "no_of_chances",           limit: 4
     t.boolean  "illiteracy_eradication"
+    t.boolean  "same_address"
   end
 
   add_index "students", ["caste_id"], name: "index_students_on_caste_id", using: :btree
