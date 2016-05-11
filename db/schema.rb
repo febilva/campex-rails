@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510233356) do
+ActiveRecord::Schema.define(version: 20160511003738) do
 
   create_table "castes", force: :cascade do |t|
     t.integer  "reservation_category_id", limit: 4
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160510233356) do
     t.string   "pincode",          limit: 255
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.boolean  "same_address"
   end
 
   add_index "guardians", ["country_id"], name: "index_guardians_on_country_id", using: :btree
