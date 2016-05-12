@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511200220) do
+ActiveRecord::Schema.define(version: 20160512002640) do
 
   create_table "boards", force: :cascade do |t|
     t.string   "name",              limit: 255
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160511200220) do
     t.integer  "score",             limit: 4
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.integer  "subject_position",  limit: 4
   end
 
   add_index "marks", ["stream_subject_id"], name: "index_marks_on_stream_subject_id", using: :btree
@@ -211,6 +212,16 @@ ActiveRecord::Schema.define(version: 20160511200220) do
     t.boolean  "same_address"
     t.integer  "board_id",                limit: 4
     t.integer  "stream_id",               limit: 4
+    t.integer  "tenth_yos",               limit: 4
+    t.integer  "tenth_yop",               limit: 4
+    t.string   "tenth_regno",             limit: 255
+    t.string   "tenth_institution",       limit: 255
+    t.integer  "twelfth_yos",             limit: 4
+    t.integer  "twelfth_yop",             limit: 4
+    t.string   "twelfth_regno",           limit: 255
+    t.string   "twelfth_institution",     limit: 255
+    t.string   "twelfth_tc_no",           limit: 255
+    t.string   "twelfth_tc_date",         limit: 255
   end
 
   add_index "students", ["board_id"], name: "index_students_on_board_id", using: :btree

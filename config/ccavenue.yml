@@ -1,0 +1,4 @@
+production:
+  merchant_id: <%= ENV['CCAV_MERCHANT_ID'] %>
+  access_code: <%= ENV['CCAV_ACCESS_CODE'] %>
+  working_key: <%= ENV['CCAV_WORKING_KEY'] %>

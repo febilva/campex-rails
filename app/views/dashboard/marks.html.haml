@@ -1,76 +1,58 @@
-.marksheet
-  .ui.segment
-    %h4.ui.horizontal.header.divider
-      %i.book.icon
-      Academic Details
+- subject_structure= current_user.board.subject_structure
+- @subject_structure = subject_structure.split(',').map{ |part| part.to_i }
+- @total_parts = @subject_structure.count
+- @subjects = []
+- 1.upto(@total_parts) do |part_number|
+  - @subjects << StreamSubject.where(stream_id: current_user.stream_id, part: part_number)
+- @total_subjects = @subject_structure.sum
 
-  = form_tag marks_step_path, remote: true, class: "ui fluid form" do |f|
-    #error_messages
-    .ui.black.secondary.segment
-      %h4{class:"ui header"} 10th STD Details
-      .ui.stackable.four.column.grid
-        .column
-          = label_tag "Year of study"
-          .ui.input
-            %input{:placeholder => "year of study...", :type => "text", name:"student[tenth_yos]", value: @student.tenth_yos}  
-        .column
-          = label_tag  :year_of_passing
-          .ui.input
-            %input{:placeholder => "Year of passing...", :type => "text", name:"student[tenth_yop]", value: @student.tenth_yop}
-        .column
-          = label_tag  "Register Number"
-          .ui.input
-            %input{:placeholder => "Register no...", :type => "text", name:"student[tenth_regno]", value: @student.tenth_regno}    
-        .column
-          = label_tag "Institution attended"
-          .ui.input
-            %input{:placeholder => "Enter your school...", :type => "text", name:"student[tenth_institution]", value: @student.tenth_institution}
-    .ui.black.secondary.segment
-      %h4{class:"ui header"} +2 Details
-      .ui.stackable.three.column.grid
-        .row
-          .column
-            = label_tag "Year of study"
-            .ui.fluid.icon.input
-              %input{:placeholder => "year of study...", :type => "text", name:"student[twelfth_yos]", value: @student.twelfth_yos}  
-          .column
-            = label_tag  :year_of_passing
-            .ui.fluid.icon.input
-              %input{:placeholder => "Year of passing...", :type => "text", name:"student[twelfth_yop]", value: @student.twelfth_yop}  
-          .column
-            = label_tag  "Register Number"
-            .ui.fluid.icon.input
-              %input{:placeholder => "Register no...", :type => "text", name:"student[twelfth_regno]", value: @student.twelfth_regno}
-        .row
-          .column
-            = label_tag "Institution attended"
-            .ui.fluid.icon.input
-              %input{:placeholder => "Enter your school...", :type => "text", name:"student[twelfth_institution]", value: @student.twelfth_institution}      
-          .column
-            = label_tag "TC Number"
-            .ui.fluid.icon.input
-              %input{:placeholder => "tc number...", :type => "text", name:"student[twelfth_tc_no]", value: @student.twelfth_tc_no}  
-          .column
-            = label_tag "TC. Date specified"
-            .ui.input
-              %input{:placeholder => "tc date...", :type => "text", name:"student[twelfth_tc_date]", value: @student.twelfth_tc_date}
+- @stream_subjects = []
+- @marks = []
+- @max_marks = []
+- Mark.where(student_id: current_user.id).each do |mark|
+  - @stream_subjects[mark.subject_position] = mark.stream_subject_id
+  - @marks[mark.subject_position] = mark.score
+  - @max_marks[mark.subject_position] = mark.stream_subject.max_marks
 
-    .ui.stackable.two.column.grid
-      .column
-        = label_tag :education_board
-        = select_tag "student[board_id]", options_from_collection_for_select(Board.where(disabled: false).order(:name), "id", "name"), {include_blank: 'Subject', class: "ui dropdown modified_dropdown" }
-      .column
-        = label_tag  :stream_of_study
-        - @streams = []
-        = select_tag "student[stream_id]", options_for_select(@streams.collect { |stream| [stream.name.titleize, stream.id] }, 0), {include_blank: 'Stream',  id: 'streams_select', class: "ui dropdown modified_dropdown" }
-    .ui.center.aligned.segment    
-      .ui.inverted.red.button#markmore Instructions     
-    #marksheet.field
-      = render 'marksheet'
+%h1 Mark List
 
-    - if @current_step > 5
-      %br   
-      .row
-      .field
-        = submit_tag 'Save & Proceed', class: "ui submit button"
-  = render 'layouts/markmore'
+= form_for current_user, html:{class:"ui fluid form"}, remote:true do |f|
+  #error_messages
+  = hidden_field_tag 'step_name', 'Marks'
+  .field
+  %br
+  .ui.center.aligned.segment.teal.inverted.segment
+    Mark Sheet
+  %br
+  .ui.stackable.four.column.grid
+  %table.ui.celled.structured.table
+    %thead
+      %tr
+        %th{rowspan: "2"} Details Of Marks
+        - 'A'.upto(('A'.ord + @total_parts - 1).chr).each do |part|
+          %th{colspan: @subject_structure[part.ord - 'A'.ord]}
+            = "Part #{part}"
+      %tr
+        - index = 0
+        - @subject_structure.each_with_index do |subject_count, part_number|
+          - @subjects = StreamSubject.where(stream_id: current_user.stream_id, part: part_number + 1)
+          - 0.upto(subject_count - 1) do
+            %th.modified_table
+              = select_tag "student[subject_params][#{index}][stream_subject_id]", options_for_select(@subjects.map{ |subject| [subject.name, subject.id, { 'data-max-marks' => subject.max_marks}] }, @stream_subjects[index]), {include_blank: 'Subject', :id => "subject_#{index}", class: "ui subjects dropdown modified_dropdown"}
+            - index += 1
+    %tbody
+      %tr
+        %td Marks Obtained
+        - 0.upto(@total_subjects - 1) do |index|
+          %td
+            .ui.icon.input
+              = text_field_tag "student[subject_params][#{index}][score]", nil, value:@marks[index] || 0, :id => "mark_#{index}", :class => "modified_column marks ui icon input"
+      %tr
+        %td Maximum Marks
+        - 0.upto(@total_subjects - 1) do |index|
+          %td
+            .ui.icon.input
+              %input{disabled: true, :type => "text" ,:class => "modified_column max-marks ui icon input",value: "#{@max_marks[index] || 0}", :readonly => "",:id => "max_mark_#{index}"}
+                %i.inverted.search.icon
+  .field
+    = submit_tag 'Save & Proceed', class: "ui submit button"

@@ -88,6 +88,8 @@ class StudentsController < ApplicationController
       :pincode, :comm_address_line1, :comm_address_line2, :comm_country_id, :comm_state_id, :comm_district_id,
       :comm_taluk, :comm_post_office, :comm_pincode, :born_in, :caste_id, :same_address, :blind, :deaf,
       :orthopedic, :ex_service, :nss, :ncc, :arts, :sports, :no_of_chances, :illiteracy_eradication,
-      :board_id, :stream_id)
+      :board_id, :stream_id, :tenth_yos, :tenth_yop, :tenth_regno, :tenth_institution, :twelfth_yos,
+      :twelfth_yop, :twelfth_regno, :twelfth_institution, :twelfth_tc_no, :twelfth_tc_date,
+      subject_params: [:stream_subject_id, :score] )
     end
 end
