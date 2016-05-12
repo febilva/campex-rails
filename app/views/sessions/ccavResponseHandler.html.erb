@@ -5,7 +5,7 @@
 </head>
 <body>
 <%
-  workingKey=Rails.application.config.x.ccavenue[:working_key]#Put in the 32 Bit Working Key provided by CCAVENUES.   
+  workingKey=Rails.application.config.x.ccavenue['working_key']#Put in the 32 Bit Working Key provided by CCAVENUES.   
   encResponse=params[:encResp]
   crypto = Crypto.new
   decResp=crypto.decrypt(encResponse,workingKey);
