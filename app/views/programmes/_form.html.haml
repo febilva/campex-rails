@@ -1,0 +1,61 @@
+= form_for @programme do |f|
+  - if @programme.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@programme.errors.count, "error")} prohibited this programme from being saved:"
+      %ul
+        - @programme.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :programme_type
+    = f.text_field :programme_type
+  .field
+    = f.label :entrance
+    = f.check_box :entrance
+  .field
+    = f.label :self_finance
+    = f.check_box :self_finance
+  .field
+    = f.label :intake
+    = f.number_field :intake
+  .field
+    = f.label :indexing_rules
+    = f.text_field :indexing_rules
+  .field
+    = f.label :ranking_priority
+    = f.text_field :ranking_priority
+  .field
+    = f.label :general
+    = f.number_field :general
+  .field
+    = f.label :sc
+    = f.number_field :sc
+  .field
+    = f.label :st
+    = f.number_field :st
+  .field
+    = f.label :muslim
+    = f.number_field :muslim
+  .field
+    = f.label :handicapped
+    = f.number_field :handicapped
+  .field
+    = f.label :obc
+    = f.number_field :obc
+  .field
+    = f.label :obh
+    = f.number_field :obh
+  .field
+    = f.label :etb
+    = f.number_field :etb
+  .field
+    = f.label :latin
+    = f.number_field :latin
+  .field
+    = f.label :disabled
+    = f.check_box :disabled
+  .actions
+    = f.submit 'Save'

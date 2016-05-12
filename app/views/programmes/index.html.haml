@@ -1,0 +1,53 @@
+%h1 Listing programmes
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Programme type
+      %th Entrance
+      %th Self finance
+      %th Intake
+      %th Indexing rules
+      %th Ranking priority
+      %th General
+      %th Sc
+      %th St
+      %th Muslim
+      %th Handicapped
+      %th Obc
+      %th Obh
+      %th Etb
+      %th Latin
+      %th Disabled
+      %th
+      %th
+      %th
+
+  %tbody
+    - @programmes.each do |programme|
+      %tr
+        %td= programme.name
+        %td= programme.programme_type
+        %td= programme.entrance
+        %td= programme.self_finance
+        %td= programme.intake
+        %td= programme.indexing_rules
+        %td= programme.ranking_priority
+        %td= programme.general
+        %td= programme.sc
+        %td= programme.st
+        %td= programme.muslim
+        %td= programme.handicapped
+        %td= programme.obc
+        %td= programme.obh
+        %td= programme.etb
+        %td= programme.latin
+        %td= programme.disabled
+        %td= link_to 'Show', programme
+        %td= link_to 'Edit', edit_programme_path(programme)
+        %td= link_to 'Destroy', programme, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Programme', new_programme_path

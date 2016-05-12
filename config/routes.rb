@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :programmes
   resources :boards, shallow: true do
     resources :streams do
       resources :stream_subjects
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
   resources :registration_steps
   resources :students
 
-  root to: 'sessions#new'
+  get '/login' => 'sessions#new', as: :root
   get '/auth/:provider/callback' => 'sessions#create'
   post '/transaction/ccavRequestHandler'=> 'sessions#ccavRequestHandler'
   get '/transaction/ccavRequestHandler'=> 'sessions#ccavRequestHandler'
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
     get 'education'
     get 'payment'
     get 'marks'
+    get 'choices'
     get 'phase_completed'
     get 'update_menu'
   end

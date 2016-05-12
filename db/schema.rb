@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512002640) do
+ActiveRecord::Schema.define(version: 20160512033225) do
 
   create_table "boards", force: :cascade do |t|
     t.string   "name",              limit: 255
@@ -101,6 +101,28 @@ ActiveRecord::Schema.define(version: 20160512002640) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "programmes", force: :cascade do |t|
+    t.string   "name",             limit: 255
+    t.string   "programme_type",   limit: 255
+    t.boolean  "entrance"
+    t.boolean  "self_finance"
+    t.integer  "intake",           limit: 4
+    t.string   "indexing_rules",   limit: 255
+    t.string   "ranking_priority", limit: 255
+    t.integer  "general",          limit: 4
+    t.integer  "sc",               limit: 4
+    t.integer  "st",               limit: 4
+    t.integer  "muslim",           limit: 4
+    t.integer  "handicapped",      limit: 4
+    t.integer  "obc",              limit: 4
+    t.integer  "obh",              limit: 4
+    t.integer  "etb",              limit: 4
+    t.integer  "latin",            limit: 4
+    t.boolean  "disabled"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "qualifications", force: :cascade do |t|

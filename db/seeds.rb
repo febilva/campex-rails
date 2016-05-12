@@ -705,3 +705,10 @@ if Board.all.count == 0
     end
   end
 end
+
+if Programme.all.count == 0
+  # Programmes List
+  programmes = []
+
+  programmes.each { |programme| Programme.new(name: programme, programme_type:'ug').save }
+end

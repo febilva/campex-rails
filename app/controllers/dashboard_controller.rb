@@ -32,6 +32,9 @@ class DashboardController < ApplicationController
   def marks
   end
 
+  def choices
+  end
+
   def phase_completed
   end
 

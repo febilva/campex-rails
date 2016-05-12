@@ -1,0 +1,1 @@
+json.extract! @programme, :id, :name, :programme_type, :entrance, :self_finance, :intake, :indexing_rules, :ranking_priority, :general, :sc, :st, :muslim, :handicapped, :obc, :obh, :etb, :latin, :disabled, :created_at, :updated_at

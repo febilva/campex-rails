@@ -1,0 +1,57 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @programme.name
+%p
+  %b Programme type:
+  = @programme.programme_type
+%p
+  %b Entrance:
+  = @programme.entrance
+%p
+  %b Self finance:
+  = @programme.self_finance
+%p
+  %b Intake:
+  = @programme.intake
+%p
+  %b Indexing rules:
+  = @programme.indexing_rules
+%p
+  %b Ranking priority:
+  = @programme.ranking_priority
+%p
+  %b General:
+  = @programme.general
+%p
+  %b Sc:
+  = @programme.sc
+%p
+  %b St:
+  = @programme.st
+%p
+  %b Muslim:
+  = @programme.muslim
+%p
+  %b Handicapped:
+  = @programme.handicapped
+%p
+  %b Obc:
+  = @programme.obc
+%p
+  %b Obh:
+  = @programme.obh
+%p
+  %b Etb:
+  = @programme.etb
+%p
+  %b Latin:
+  = @programme.latin
+%p
+  %b Disabled:
+  = @programme.disabled
+
+= link_to 'Edit', edit_programme_path(@programme)
+\|
+= link_to 'Back', programmes_path
