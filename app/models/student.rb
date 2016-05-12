@@ -9,8 +9,23 @@ class Student < ActiveRecord::Base
   belongs_to :comm_state, foreign_key: "comm_state_id", class_name: "State"
   belongs_to :comm_district, foreign_key: "comm_district_id", class_name: "District"
   belongs_to :board
+  belongs_to :stream
 
   before_validation :check_if_same_address
+
+  def subject_params=(subject_params)
+    subject_params.each do |mark_details|
+      mark = mark_details[1]
+      unless mark[:score] == 0
+        @mark = Mark.where(student_id: self.id, subject_position: mark_details[0]).first
+        if @mark
+          @mark.update(score: mark[:score], stream_subject_id: mark[:stream_subject_id])
+        else
+          Mark.create(student_id: self.id, stream_subject_id: mark[:stream_subject_id], score: mark[:score], subject_position:mark_details[0])
+        end
+      end
+    end
+  end
 
   protected
     def check_if_same_address

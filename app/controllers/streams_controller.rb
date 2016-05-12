@@ -5,6 +5,10 @@ class StreamsController < ApplicationController
   # GET boards/1/streams
   def index
     @streams = @board.streams
+    respond_to do |format|
+      format.html
+      format.json { render json: @streams }
+    end
   end
 
   # GET boards/1/streams/1

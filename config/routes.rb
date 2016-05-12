@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get '/login' => 'sessions#new', as: :root
   get '/auth/:provider/callback' => 'sessions#create'
+  post '/transaction/ccavRequestHandler'=> 'sessions#ccavRequestHandler'
+  get '/transaction/ccavRequestHandler'=> 'sessions#ccavRequestHandler'
   delete '/auth/logout' => 'sessions#destroy'
 
   namespace :dashboard do
@@ -31,6 +33,7 @@ Rails.application.routes.draw do
     get 'guardian'
     get 'weightages'
     get 'education'
+    get 'payment'
     get 'marks'
     get 'phase_completed'
     get 'update_menu'

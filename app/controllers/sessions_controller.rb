@@ -40,4 +40,7 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to root_url
   end
+
+  def ccavRequestHandler
+  end
 end
